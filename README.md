@@ -1,2 +1,2 @@
-# simple-jabber
+# SimpleJabber
 Simple Jabber client
