@@ -1,5 +1,2 @@
-# Visual Studio temporary files
-.vs/
-
-# Build directories
 build/
+*.user
