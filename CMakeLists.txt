@@ -4,7 +4,7 @@ cmake_policy(SET CMP0048 NEW)
 
 # Project settings
 project(sjabber VERSION 0.1.0 LANGUAGES C CXX)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/exe)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 # C++ and Qt definitions
