@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>527</width>
-    <height>149</height>
+    <width>400</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,20 +30,9 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
-     <widget class="DockWidget" name="dock" native="true"/>
-    </item>
    </layout>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>DockWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">dockwidget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

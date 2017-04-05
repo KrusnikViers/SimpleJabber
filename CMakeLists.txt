@@ -25,6 +25,7 @@ set(SRC main.cpp)
 add_subdirectory(base)
 add_subdirectory(core)
 add_subdirectory(ui)
+include_directories(ui)
 
 add_subdirectory(third_party/qxmpp)
 include_directories(third_party/qxmpp/src/base)

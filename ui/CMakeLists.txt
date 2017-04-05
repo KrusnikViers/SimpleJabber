@@ -3,10 +3,4 @@ set(SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.h
     ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.ui
-    ${CMAKE_CURRENT_SOURCE_DIR}/dockwidget.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/dockwidget.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/dockwidget.ui
-    ${CMAKE_CURRENT_SOURCE_DIR}/statusbarwidget.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/statusbarwidget.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/statusbarwidget.ui
     PARENT_SCOPE)
