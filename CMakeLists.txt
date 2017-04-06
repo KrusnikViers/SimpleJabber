@@ -19,7 +19,6 @@ find_package(Qt5Sql REQUIRED)
 
 # Current directory sources
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(SRC main.cpp)
 
 # Components
 add_subdirectory(base)
