@@ -1,8 +1,14 @@
 #include "mainwindow.h"
 
-#include <cassert>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
+MainWindow::MainWindow() : QMainWindow(nullptr), _client(this)
 {
     _ui.setupUi(this);
+    QObject::connect(&_client,
+                     SIGNAL(stateChanged(QXmppClient::State)),
+                     SLOT(onStateChanged(QXmppClient::State)));
+}
+
+void MainWindow::onStateChanged(QXmppClient::State state) {
+
 }
