@@ -1,15 +1,12 @@
 #include "base/project_info.h"
 
 
-#define xstr(v) str(v)
-#define str(v) #v
-
 namespace base {
 
-const unsigned int kProjectMajorVersion = VER_MAJOR;
-const unsigned int kProjectMinorVersion = VER_MINOR;
-const unsigned int kProjectPatchVersion = VER_PATCH;
-const char kProjectFullVersion[] = xstr(VER_FULL);
+const unsigned int kProjectMajorVersion = 1;
+const unsigned int kProjectMinorVersion = 0;
+const unsigned int kProjectPatchVersion = 0;
+const char kProjectFullVersion[] = "1.0.0";
 
 const char kProjectFullName[] = "Simple Jabber";
 
