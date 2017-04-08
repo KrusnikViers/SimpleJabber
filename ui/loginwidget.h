@@ -3,6 +3,8 @@
 #include "ui_loginwidget.h"
 
 
+namespace ui {
+
 class LoginWidget : public QWidget
 {
     Q_OBJECT
@@ -19,4 +21,7 @@ private slots:
 
 private:
     Ui::LoginWidget _ui;
-};
+
+};  // class LoginWidget
+
+}  // namespace ui

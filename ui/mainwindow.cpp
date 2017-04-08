@@ -3,6 +3,8 @@
 #include <cassert>
 
 
+namespace ui {
+
 MainWindow::MainWindow() : QMainWindow(nullptr)
 {
     _ui.setupUi(this);
@@ -22,3 +24,5 @@ void MainWindow::onLoginRequested(const QString &jid, const QString &password)
 {
     _client.login(jid, password);
 }
+
+}  // namespace ui

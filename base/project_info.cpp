@@ -10,4 +10,4 @@ const char kProjectFullVersion[] = "1.0.0";
 
 const char kProjectFullName[] = "Simple Jabber";
 
-} // namespace base
+}  // namespace base

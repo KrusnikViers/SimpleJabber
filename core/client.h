@@ -5,6 +5,8 @@
 #include "third_party/qxmpp/src/client/QXmppClient.h"
 
 
+namespace core {
+
 class Client : public QObject
 {
     Q_OBJECT
@@ -18,4 +20,7 @@ private slots:
 
 private:
     QXmppClient _qxmpp_client;
-};
+
+};  // class Client
+
+}  // namespace core

@@ -7,8 +7,12 @@
 #include "core/client.h"
 #include "ui_mainwindow.h"
 
-class LoginWidget;
 
+namespace ui {
+class LoginWidget;
+}
+
+namespace ui {
 
 class MainWindow : public QMainWindow
 {
@@ -22,8 +26,10 @@ public slots:
 private:
     void setUpUIComponents();
 
-    Client         _client;
-    Ui::MainWindow _ui;
-    // Ui components
-    LoginWidget* _login_widget;
-};
+    Ui::MainWindow   _ui;
+    core::Client     _client;
+    ui::LoginWidget* _login_widget;
+
+};  // class MainWindow
+
+}  // namespace ui

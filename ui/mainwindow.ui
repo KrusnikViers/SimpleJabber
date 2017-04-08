@@ -38,7 +38,7 @@
     </property>
     <item>
      <widget class="QStackedWidget" name="stacked_widget">
-      <widget class="LoginWidget" name="login_page"/>
+      <widget class="ui::LoginWidget" name="login_page"/>
       <widget class="QWidget" name="page_2"/>
      </widget>
     </item>
@@ -47,7 +47,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>LoginWidget</class>
+   <class>ui::LoginWidget</class>
    <extends>QWidget</extends>
    <header location="global">ui/loginwidget.h</header>
    <container>1</container>
