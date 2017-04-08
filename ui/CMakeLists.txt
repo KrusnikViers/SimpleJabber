@@ -1,10 +1,10 @@
 set(SRC
     ${SRC}
-    ${CMAKE_CURRENT_SOURCE_DIR}/loginwidget.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/loginwidget.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/loginwidget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.ui
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/main_window.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/main_window.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/main_window.ui
     PARENT_SCOPE)

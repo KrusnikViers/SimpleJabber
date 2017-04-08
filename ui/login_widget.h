@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ui_loginwidget.h"
+#include "ui_login_widget.h"
 
 
 namespace ui {

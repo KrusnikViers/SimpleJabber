@@ -5,7 +5,7 @@
 #include <QMainWindow>
 
 #include "core/client.h"
-#include "ui_mainwindow.h"
+#include "ui_main_window.h"
 
 
 namespace ui {
