@@ -5,9 +5,17 @@
 #include "third_party/qxmpp/src/client/QXmppClient.h"
 
 
-class Client : public QXmppClient
+class Client : public QObject
 {
     Q_OBJECT
 public:
-    explicit Client(QObject* parent);
+    Client();
+
+    void login(const QString& jid, const QString& password);
+
+private slots:
+    void onStateUpdate(QXmppClient::State state);
+
+private:
+    QXmppClient _qxmpp_client;
 };

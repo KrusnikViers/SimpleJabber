@@ -1,5 +1,8 @@
 set(SRC
     ${SRC}
+    ${CMAKE_CURRENT_SOURCE_DIR}/loginwidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/loginwidget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/loginwidget.ui
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.h

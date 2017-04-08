@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="widget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="_layout_main">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -38,13 +38,21 @@
     </property>
     <item>
      <widget class="QStackedWidget" name="stacked_widget">
-      <widget class="QWidget" name="page"/>
+      <widget class="LoginWidget" name="login_page"/>
       <widget class="QWidget" name="page_2"/>
      </widget>
     </item>
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LoginWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">ui/loginwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

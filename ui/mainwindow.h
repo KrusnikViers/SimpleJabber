@@ -7,6 +7,8 @@
 #include "core/client.h"
 #include "ui_mainwindow.h"
 
+class LoginWidget;
+
 
 class MainWindow : public QMainWindow
 {
@@ -15,9 +17,13 @@ public:
     MainWindow();
 
 public slots:
-    void onStateChanged(QXmppClient::State state);
+    void onLoginRequested(const QString& jid, const QString& password);
 
 private:
-    Client _client;
+    void setUpUIComponents();
+
+    Client         _client;
     Ui::MainWindow _ui;
+    // Ui components
+    LoginWidget* _login_widget;
 };
