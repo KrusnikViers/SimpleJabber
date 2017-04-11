@@ -20,7 +20,7 @@ private slots:
     void onBackClicked();
 
 private:
-    Ui::LoginWidget _ui;
+    Ui::LoginWidget ui_;
 
 };  // class LoginWidget
 

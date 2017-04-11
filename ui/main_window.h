@@ -26,9 +26,9 @@ public slots:
 private:
     void setUpUIComponents();
 
-    Ui::MainWindow   _ui;
-    core::Client     _client;
-    ui::LoginWidget* _login_widget;
+    Ui::MainWindow   ui_;
+    core::Client     client_;
+    ui::LoginWidget* login_widget_;
 
 };  // class MainWindow
 

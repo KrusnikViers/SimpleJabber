@@ -24,10 +24,10 @@ private slots:
     void onQXmppStateUpdate(QXmppClient::State state);
 
 private:
-    base::ConnectionState _state;
-    base::Status          _status;
+    base::ConnectionState state_;
+    base::Status          status_;
 
-    QXmppClient           _qxmpp_client;
+    QXmppClient           qxmpp_client_;
 
 };  // class Client
 

@@ -7,7 +7,7 @@ namespace ui {
 
 MainWindow::MainWindow() : QMainWindow(nullptr)
 {
-    _ui.setupUi(this);
+    ui_.setupUi(this);
     setUpUIComponents();
 }
 
@@ -15,16 +15,16 @@ MainWindow::MainWindow() : QMainWindow(nullptr)
 void MainWindow::setUpUIComponents()
 {
     QStackedWidget* widgets_stack =
-            _ui.widget->findChild<QStackedWidget*>("stacked_widget");
+            ui_.widget->findChild<QStackedWidget*>("stacked_widget");
 
-    _login_widget = dynamic_cast<LoginWidget*>(widgets_stack->widget(0));
-    QObject::connect(_login_widget, SIGNAL(loginRequested(QString,QString)), SLOT(onLoginRequested(QString,QString)));
+    login_widget_ = dynamic_cast<LoginWidget*>(widgets_stack->widget(0));
+    QObject::connect(login_widget_, SIGNAL(loginRequested(QString,QString)), SLOT(onLoginRequested(QString,QString)));
 }
 
 
 void MainWindow::onLoginRequested(const QString &jid, const QString &password)
 {
-    _client.login(jid, password);
+    client_.login(jid, password);
 }
 
 }  // namespace ui

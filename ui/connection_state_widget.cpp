@@ -6,7 +6,13 @@ namespace ui {
 ConnectionStateWidget::ConnectionStateWidget(QWidget *parent) :
     QWidget(parent)
 {
-    _ui.setupUi(this);
+    ui_.setupUi(this);
+}
+
+
+void ConnectionStateWidget::onConnectionStateChanged(base::ConnectionState state)
+{
+
 }
 
 }  // namespace ui

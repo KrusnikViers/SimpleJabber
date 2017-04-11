@@ -16,7 +16,7 @@ public slots:
     void onConnectionStateChanged(base::ConnectionState state);
 
 private:
-    Ui::ConnectionStateWidget _ui;
+    Ui::ConnectionStateWidget ui_;
 
 };  // ConnectionStateWidget
 
