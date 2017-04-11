@@ -1,5 +1,7 @@
 set(SRC
     ${SRC}
+    ${CMAKE_CURRENT_SOURCE_DIR}/connection_state.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/connection_state.h
     ${CMAKE_CURRENT_SOURCE_DIR}/project_info.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/project_info.h
     ${CMAKE_CURRENT_SOURCE_DIR}/status.cpp

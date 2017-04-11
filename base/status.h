@@ -13,10 +13,10 @@ enum class Status {
     Unavailable
 };
 
-QXmppPresence::AvailableStatusType ToQXmppStatus(Status status);
-Status FromQXmppStatus(QXmppPresence::AvailableStatusType status);
+QXmppPresence::AvailableStatusType toQXmppStatus(Status status);
+Status fromQXmppStatus(QXmppPresence::AvailableStatusType status);
 
-QXmppPresence::Type ToQXmppType(Status status);
-Status FromQXmppType(QXmppPresence::Type type);
+QXmppPresence::Type toQXmppType(Status status);
+Status fromQXmppType(QXmppPresence::Type type);
 
 }  // namespace base

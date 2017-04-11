@@ -1,5 +1,8 @@
 set(SRC
     ${SRC}
+    ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.ui
     ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.ui
