@@ -4,7 +4,8 @@
 namespace base {
 
 QXmppPresence::AvailableStatusType toQXmppStatus(Status status) {
-    switch (status) {
+    switch (status)
+    {
     case Status::Available:
         return QXmppPresence::Online;
     case Status::AwayFromKeyboard:
@@ -19,7 +20,8 @@ QXmppPresence::AvailableStatusType toQXmppStatus(Status status) {
 
 
 Status fromQXmppStatus(QXmppPresence::AvailableStatusType status) {
-    switch (status) {
+    switch (status)
+    {
     case QXmppPresence::Online:
     case QXmppPresence::Chat:
         return Status::Available;
@@ -36,7 +38,8 @@ Status fromQXmppStatus(QXmppPresence::AvailableStatusType status) {
 
 
 QXmppPresence::Type toQXmppType(Status status) {
-    switch (status) {
+    switch (status)
+    {
     case Status::Available:
     case Status::AwayFromKeyboard:
     case Status::AwayForALongTime:
@@ -49,7 +52,8 @@ QXmppPresence::Type toQXmppType(Status status) {
 
 
 Status fromQXmppType(QXmppPresence::Type type) {
-    switch (type) {
+    switch (type)
+    {
     case QXmppPresence::Available:
     case QXmppPresence::Subscribed:
         return Status::Available;

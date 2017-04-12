@@ -7,12 +7,23 @@ namespace base {
 
 enum class ConnectionState {
     Initial,
-    Disconnected,
     Connecting,
-    Connected
+    Connected,
+    Disconnected
 };
 
 ConnectionState fromQXmppState(QXmppClient::State state);
 QXmppClient::State toQXmppState(ConnectionState state);
+
+
+enum class ConnectionError {
+    NoError,
+    SocketError,
+    KeepAliveError,
+    StreamError
+};
+
+ConnectionError fromQXmppError(QXmppClient::Error error);
+QXmppClient::Error toQXmppError(ConnectionError error);
 
 }  // namespace base
