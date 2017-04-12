@@ -1,6 +1,8 @@
 # SimpleJabber
 Simple Jabber client
 
+(Project is in active development and not suitable for using)
+
 ---
 
 ## Dependencies:
