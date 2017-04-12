@@ -10,6 +10,7 @@
 
 namespace ui {
 class LoginWidget;
+class ConnectionStateWidget;
 }
 
 namespace ui {
@@ -26,9 +27,11 @@ public slots:
 private:
     void setUpUIComponents();
 
-    Ui::MainWindow   ui_;
-    core::Client     client_;
-    ui::LoginWidget* login_widget_;
+    Ui::MainWindow ui_;
+    core::Client   client_;
+
+    ui::LoginWidget*           login_widget_;
+    ui::ConnectionStateWidget* connection_state_widget_;
 
 };  // class MainWindow
 

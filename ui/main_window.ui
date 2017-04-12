@@ -42,6 +42,9 @@
       <widget class="QWidget" name="page_2"/>
      </widget>
     </item>
+    <item>
+     <widget class="ui::ConnectionStateWidget" name="connection_state_widget" native="true"/>
+    </item>
    </layout>
   </widget>
  </widget>
@@ -50,6 +53,12 @@
    <class>ui::LoginWidget</class>
    <extends>QWidget</extends>
    <header location="global">ui/login_widget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ui::ConnectionStateWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">ui/connection_state_widget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

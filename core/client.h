@@ -19,9 +19,11 @@ public:
 
 signals:
     void stateUpdate(base::ConnectionState state);
+    void connectionError(base::ConnectionError error);
 
 private slots:
     void onQXmppStateUpdate(QXmppClient::State state);
+    void onQXmppError(QXmppClient::Error error);
 
 private:
     base::ConnectionState state_;
