@@ -7,7 +7,6 @@
 #include "core/client.h"
 #include "ui_main_window.h"
 
-
 namespace ui {
 class LoginWidget;
 class ConnectionStateWidget;
@@ -32,7 +31,6 @@ private:
 
     ui::LoginWidget*           login_widget_;
     ui::ConnectionStateWidget* connection_state_widget_;
-
 };  // class MainWindow
 
 }  // namespace ui
