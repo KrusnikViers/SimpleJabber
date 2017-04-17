@@ -1,2 +1,11 @@
+# Standart output directory
 build/
+
+# User-side generated files
 *.user
+*.autosave
+
+# Shared binaries
+!shared_libraries
+/third_party/shared/*
+

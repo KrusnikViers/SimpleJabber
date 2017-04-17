@@ -1,5 +1,9 @@
 #include "client.h"
 
+#include <cassert>
+
+#include <QSslSocket>
+
 #include "base/project_info.h"
 
 namespace core {
@@ -9,11 +13,13 @@ Client::Client() : QObject(nullptr),
                    status_(base::UserStatus::Unavailable),
                    qxmpp_client_(this),
                    qxmpp_logger_(new QXmppLogger(this)) {
+    // SSL expected to be enabled by default.
+    assert(QSslSocket::supportsSsl());
+
     qxmpp_client_.setLogger(qxmpp_logger_.get());
     qxmpp_logger_->setLogFilePath(base::dataDirectory().canonicalPath()
                                   + QDir::separator() + base::kLogFileName);
-    qDebug() << "Log path: " << base::dataDirectory().canonicalPath()
-                                + QDir::separator() + base::kLogFileName;
+
     setXmppLogging(true);
     setupConnections();
 }
