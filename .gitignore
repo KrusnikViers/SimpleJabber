@@ -6,6 +6,5 @@ build/
 *.autosave
 
 # Shared binaries
-!shared_libraries
 /third_party/shared/*
-
+!/third_party/shared/shared_libraries
