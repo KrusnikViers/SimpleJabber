@@ -18,7 +18,6 @@ public:
     Client();
 
     void login(const QString& jid, const QString& password);
-    void setXmppLogging(bool value);
 
 signals:
     void stateUpdate(base::ConnectionState state);
@@ -35,8 +34,6 @@ private:
     base::UserStatus      status_;
 
     QXmppClient qxmpp_client_;
-
-    std::unique_ptr<QXmppLogger> qxmpp_logger_;
 };  // class Client
 
 }  // namespace core
