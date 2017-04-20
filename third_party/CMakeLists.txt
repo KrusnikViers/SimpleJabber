@@ -1,25 +1,23 @@
 cmake_minimum_required(VERSION 3.2.2)
-cmake_policy(SET CMP0020 OLD)
+cmake_policy(SET CMP0020 NEW)
 cmake_policy(SET CMP0048 NEW)
 cmake_policy(SET CMP0043 NEW)
 
-# C++ and Qt requirements
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_REQUIRED TRUE)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5Xml REQUIRED)
 
-# Copy shared libraries to binary directory
+# SHARED-THIRD-PARTY
 add_custom_target(shared-third-party)
 add_custom_command(TARGET shared-third-party POST_BUILD
                    COMMENT "Shared libraries added to ${PROJECT_BINARY_DIR}"
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                            ${CMAKE_CURRENT_SOURCE_DIR}/shared ${PROJECT_BINARY_DIR})
 
-# QXmpp library
+# QXMPP-STATIC
 project(qxmpp-static C CXX)
 set(QXMPP_VERSION 0.9.3)
-
 include_directories(qxmpp/src/base)
 include_directories(qxmpp/src/client)
 set (QXMPP_SRC
@@ -143,7 +141,6 @@ set (QXMPP_SRC
     qxmpp/src/client/QXmppVCardManager.h
     qxmpp/src/client/QXmppVersionManager.cpp
     qxmpp/src/client/QXmppVersionManager.h)
-
 add_library(qxmpp-static STATIC ${QXMPP_SRC})
 add_definitions(-DQXMPP_STATIC)
 qt5_use_modules(qxmpp-static Network Xml)

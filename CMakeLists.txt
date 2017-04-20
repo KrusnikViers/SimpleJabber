@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.2.2)
-project(SimpleJabber VERSION 0.1.0 LANGUAGES C CXX)
-
-cmake_policy(SET CMP0020 OLD)
+cmake_policy(SET CMP0020 NEW)
 cmake_policy(SET CMP0048 NEW)
 cmake_policy(SET CMP0043 NEW)
+
+project(SimpleJabber VERSION 1.0.0 LANGUAGES C CXX)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/exe)
 set(PROJECT_BINARY_DIR ${EXECUTABLE_OUTPUT_PATH})
@@ -19,19 +19,15 @@ set(CMAKE_AUTORCC ON)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
-# Project components
+# Components
 add_subdirectory(base)
 add_subdirectory(core)
 add_subdirectory(ui)
-include_directories(ui)
-
-# Third-party components
 add_subdirectory(third_party)
 
-# Include QXmpp as part of the project
+include_directories(ui)
 include_directories(third_party/qxmpp/src/base)
 include_directories(third_party/qxmpp/src/client)
-include_directories(third_party/qxmpp/src/server)
 
 # SJabber (shared Qt and OpenSSL libraries)
 add_executable(sjabber ${SRC})
