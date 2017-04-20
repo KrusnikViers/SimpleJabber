@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5.2)
+cmake_minimum_required(VERSION 3.2.2)
 cmake_policy(SET CMP0020 OLD)
 cmake_policy(SET CMP0048 NEW)
 cmake_policy(SET CMP0043 NEW)

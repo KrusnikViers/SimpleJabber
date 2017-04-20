@@ -1,0 +1,21 @@
+dist: trusty
+sudo: require
+
+language: cpp
+compiler:
+    - gcc
+    - clang
+
+before_install:
+  - sudo add-apt-repository --yes ppa:beineri/opt-qt58-trusty
+  - sudo apt-get update
+  - sudo apt-get install -qq qt58-meta-minimal
+
+before_script:
+  - QT_ENV_SCRIPT=$(find /opt -name 'qt*-env.sh')
+  - source $QT_ENV_SCRIPT
+  - mkdir build
+  - cd build
+  - cmake ..
+
+script: make

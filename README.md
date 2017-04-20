@@ -1,5 +1,6 @@
 # SimpleJabber
-Simple Jabber client
+
+[![Build Status](https://travis-ci.org/KrusnikViers/simple-jabber.svg?branch=master)](https://travis-ci.org/KrusnikViers/simple-jabber)
 
 (Project is in active development and not suitable for using)
 
