@@ -7,12 +7,11 @@
 #include "core/client.h"
 #include "ui_main_window.h"
 
-namespace ui {
-class LoginWidget;
-class ConnectionStateWidget;
-}
 
 namespace ui {
+
+class LoginWidget;
+class ConnectionStateWidget;
 
 class MainWindow : public QMainWindow
 {

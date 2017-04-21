@@ -1,5 +1,6 @@
 #include "connection_state_widget.h"
 
+
 namespace {
 
 const int kConnectingHeightPx = 20;
@@ -8,6 +9,7 @@ const int kErrorHeightPx = 40;
 const QString kConnectingString = "Connecting...";
 
 }  // namespace
+
 
 namespace ui {
 

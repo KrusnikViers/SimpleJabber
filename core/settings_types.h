@@ -2,11 +2,11 @@
 
 #include <QtCore>
 
+
 namespace core {
 namespace settings {
 
 enum class Logging {
-    ExternalWindow,
     File,
     Stdout,
     None

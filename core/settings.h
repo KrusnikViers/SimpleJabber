@@ -18,7 +18,7 @@ public:
     QString logFilePath() const;
 
 signals:
-    void loggingTypeUpdated();
+    void loggingTypeUpdated(settings::Logging value);
 
 private:
     QSettings settings_;

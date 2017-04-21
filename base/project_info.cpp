@@ -4,6 +4,7 @@
 
 #include <QtCore>
 
+
 namespace base {
 
 const unsigned int kProjectMajorVersion = 1;

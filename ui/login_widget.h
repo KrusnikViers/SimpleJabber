@@ -2,6 +2,7 @@
 
 #include "ui_login_widget.h"
 
+
 namespace ui {
 
 class LoginWidget : public QWidget

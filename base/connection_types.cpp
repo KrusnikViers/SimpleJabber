@@ -1,5 +1,6 @@
 #include "connection_types.h"
 
+
 namespace base {
 
 ConnectionState toConnectionState(QXmppClient::State state)
@@ -26,7 +27,6 @@ QXmppClient::State toQXmppState(ConnectionState state)
     }
 }
 
-//TODO(viers): Support different error types and user-friendly output for them.
 QString errorDescription(ConnectionError error)
 {
     return "Unknown error";

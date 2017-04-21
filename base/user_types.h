@@ -2,6 +2,7 @@
 
 #include "third_party/qxmpp/src/base/QXmppPresence.h"
 
+
 namespace base {
 
 enum class UserStatus {

@@ -5,6 +5,7 @@
 #include "third_party/qxmpp/src/base/QXmppStanza.h"
 #include "third_party/qxmpp/src/client/QXmppClient.h"
 
+
 namespace base {
 
 enum class ConnectionState {
@@ -39,4 +40,3 @@ ConnectionError toConnectionError(QAbstractSocket::SocketError error);
 ConnectionError toConnectionError(QXmppStanza::Error::Condition error);
 
 }  // namespace base
-

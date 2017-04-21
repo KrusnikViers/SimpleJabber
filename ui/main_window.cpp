@@ -5,6 +5,7 @@
 #include "ui/connection_state_widget.h"
 #include "ui/login_widget.h"
 
+
 namespace ui {
 
 MainWindow::MainWindow() : QMainWindow(nullptr)

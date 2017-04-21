@@ -3,6 +3,7 @@
 #include "base/connection_types.h"
 #include "ui_connection_state_widget.h"
 
+
 namespace ui {
 
 class ConnectionStateWidget : public QWidget

@@ -2,6 +2,7 @@
 
 #include <QDir>
 
+
 namespace base {
 
 extern const unsigned int kProjectMajorVersion;

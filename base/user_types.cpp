@@ -1,5 +1,6 @@
 #include "user_types.h"
 
+
 namespace base {
 
 QXmppPresence::AvailableStatusType toQXmppStatus(UserStatus status)
