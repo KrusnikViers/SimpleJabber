@@ -4,6 +4,8 @@ build/
 # User-side generated files
 *.user
 *.autosave
+.vs/*
+CMakeSettings.json
 
 # Shared binaries
 /third_party/shared/*

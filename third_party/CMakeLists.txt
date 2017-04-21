@@ -8,21 +8,52 @@ set(CMAKE_CXX_REQUIRED TRUE)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5Xml REQUIRED)
 
-# SHARED-THIRD-PARTY
-add_custom_target(shared-third-party)
-add_custom_command(TARGET shared-third-party POST_BUILD
-                   COMMENT "Shared libraries added to ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                           ${CMAKE_CURRENT_SOURCE_DIR}/shared
-                           ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
-# QXMPP-STATIC
+####################
+# shared-third-party
+####################
+add_custom_target(shared-third-party)
+add_custom_command(
+	TARGET shared-third-party POST_BUILD
+	COMMENT "Shared third-party libraries added to ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/shared ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+
+
+###########
+# shared-qt
+###########
+add_custom_target(shared-qt)
+
+set(QT_MODULES_LIST Core Widgets Gui Network Xml)
+if(WIN32)
+	set(QT_PLUGINS QWindowsIntegrationPlugin)
+endif()
+
+set(_QTM_DIR ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+set(_QTP_DIR ${_QTM_DIR}/platforms/)
+file(MAKE_DIRECTORY ${_QTP_DIR})
+foreach(_QTM ${QT_MODULES_LIST})
+	add_custom_command(
+		TARGET shared-qt POST_BUILD
+		COMMENT "Shared ${_QTM} added to ${_QTM_DIR}"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::${_QTM}> ${_QTM_DIR})
+endforeach()
+foreach(_QTP ${QT_PLUGINS})
+	add_custom_command(
+		TARGET shared-qt POST_BUILD
+		COMMENT "Platform plugin ${_QTP} added to ${_QTP_DIR}"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::${_QTP}> ${_QTP_DIR})
+endforeach()
+
+##############
+# qxmpp-static
+##############
 project(qxmpp-static C CXX)
 set(QXMPP_VERSION 0.9.3)
 include_directories(qxmpp/src/base)
 include_directories(qxmpp/src/client)
-set (QXMPP_SRC
-    qxmpp/src/base/QXmppArchiveIq.cpp
+set(QXMPP_SRC
+	qxmpp/src/base/QXmppArchiveIq.cpp
     qxmpp/src/base/QXmppArchiveIq.h
     qxmpp/src/base/QXmppBindIq.cpp
     qxmpp/src/base/QXmppBindIq.h
