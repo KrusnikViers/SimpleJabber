@@ -11,9 +11,10 @@ find_package(Qt5Xml REQUIRED)
 # SHARED-THIRD-PARTY
 add_custom_target(shared-third-party)
 add_custom_command(TARGET shared-third-party POST_BUILD
-                   COMMENT "Shared libraries added to ${PROJECT_BINARY_DIR}"
+                   COMMENT "Shared libraries added to ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}"
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                           ${CMAKE_CURRENT_SOURCE_DIR}/shared ${PROJECT_BINARY_DIR})
+                           ${CMAKE_CURRENT_SOURCE_DIR}/shared
+                           ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
 # QXMPP-STATIC
 project(qxmpp-static C CXX)
