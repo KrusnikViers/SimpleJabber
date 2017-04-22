@@ -6,7 +6,7 @@
 namespace core {
 namespace settings {
 
-enum class Logging {
+enum class Logging : int {
     File,
     Stdout,
     None
@@ -14,5 +14,3 @@ enum class Logging {
 
 }  // namespace settings
 }  // namespace core
-
-Q_DECLARE_METATYPE(core::settings::Logging)

@@ -1,21 +1,24 @@
 #include "client.h"
 
-#include <cassert>
-
-#include <QSslSocket>
-
 #include "base/project_info.h"
+
 
 namespace core {
 
-Client::Client() : QObject(nullptr),
-                   state_(base::ConnectionState::Initial),
-                   status_(base::UserStatus::Unavailable),
-                   qxmpp_client_(this)
+Client::Client() :
+    QObject(nullptr),
+    settings_(),
+    state_(base::ConnectionState::Initial),
+    status_(base::UserStatus::Unavailable),
+    qxmpp_client_(this),
+    logger_(settings_, qxmpp_client_)
 {
-    // SSL expected to be enabled by default.
-    assert(QSslSocket::supportsSsl());
-    setupConnections();
+    QObject::connect(&qxmpp_client_,
+                     SIGNAL(stateChanged(QXmppClient::State)),
+                     SLOT(onQXmppStateUpdate(QXmppClient::State)));
+    QObject::connect(&qxmpp_client_,
+                     SIGNAL(error(QXmppClient::Error)),
+                     SLOT(onQXmppError(QXmppClient::Error)));
 }
 
 void Client::login(const QString &jid, const QString &password)
@@ -30,16 +33,6 @@ void Client::onQXmppStateUpdate(QXmppClient::State state)
 
 void Client::onQXmppError(QXmppClient::Error error)
 {
-}
-
-void Client::setupConnections()
-{
-    QObject::connect(&qxmpp_client_,
-                     SIGNAL(stateChanged(QXmppClient::State)),
-                     SLOT(onQXmppStateUpdate(QXmppClient::State)));
-    QObject::connect(&qxmpp_client_,
-                     SIGNAL(error(QXmppClient::Error)),
-                     SLOT(onQXmppError(QXmppClient::Error)));
 }
 
 }  // namespace core

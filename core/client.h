@@ -6,8 +6,10 @@
 
 #include "base/connection_types.h"
 #include "base/user_types.h"
+#include "core/logger.h"
+#include "core/settings.h"
 #include "third_party/qxmpp/src/client/QXmppClient.h"
-#include "third_party/qxmpp/src/base/QXmppLogger.h"
+
 
 namespace core {
 
@@ -28,12 +30,13 @@ private slots:
     void onQXmppError(QXmppClient::Error error);
 
 private:
-    void setupConnections();
+    Settings settings_;
 
     base::ConnectionState state_;
     base::UserStatus      status_;
 
     QXmppClient qxmpp_client_;
+    Logger      logger_;
 };  // class Client
 
 }  // namespace core

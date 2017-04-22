@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+
 namespace {
 
 QDir dataDirectory()
@@ -23,24 +24,25 @@ const QString kLoggingKeyName = "logging_type";
 
 }  // namespace
 
+
 namespace core {
 
 using namespace settings;
 
 Settings::Settings() :
     QObject(nullptr),
-    settings_(settingsFilePath(), QSettings::IniFormat, this) {
-    assert(settings_.status() == QSettings::NoError);
-}
+    settings_(settingsFilePath(), QSettings::IniFormat, this) 
+{}
 
 Logging Settings::logging() const
 {
-    return settings_.value(kLoggingKeyName, QVariant::fromValue(Logging::None)).value<Logging>();
+    int bare_value = settings_.value(kLoggingKeyName, QVariant(static_cast<int>(Logging::None))).toInt();
+    return static_cast<Logging>(bare_value);
 }
 
 void Settings::setLogging(Logging value)
 {
-    settings_.setValue(kLoggingKeyName, QVariant::fromValue(value));
+    settings_.setValue(kLoggingKeyName, QVariant(static_cast<int>(value)));
 }
 
 QString Settings::logFilePath() const
