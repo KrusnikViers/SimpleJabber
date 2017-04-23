@@ -13,10 +13,24 @@ const QString kConnectingString = "Connecting...";
 
 namespace ui {
 
-ConnectionStateWidget::ConnectionStateWidget(QWidget *parent) : QWidget(parent)
+ConnectionStateWidget::ConnectionStateWidget(QWidget *parent, core::Client& client) :
+    QWidget(parent),
+    client_(client)
 {
     ui_.setupUi(this);
-    QObject::connect(ui_.hide_button, SIGNAL(clicked(bool)), SLOT(reset()));
+    QObject::connect(ui_.hide_button, SIGNAL(clicked(bool)), SLOT(onHideClicked()));
+
+    QObject::connect(&client,
+                     SIGNAL(stateUpdate(base::ConnectionState)),
+                     SLOT(onConnectionStateChanged(base::ConnectionState)));
+    QObject::connect(&client,
+                     SIGNAL(error(base::ConnectionError)),
+                     SLOT(onError(base::ConnectionError)));
+}
+
+void ConnectionStateWidget::reset()
+{
+    onConnectionStateChanged(base::ConnectionState::Initial);
 }
 
 void ConnectionStateWidget::onConnectionStateChanged(base::ConnectionState state)
@@ -45,7 +59,7 @@ void ConnectionStateWidget::onError(base::ConnectionError error)
     ui_.message_label->setText(base::errorDescription(error));
 }
 
-void ConnectionStateWidget::reset()
+void ConnectionStateWidget::onHideClicked()
 {
     onConnectionStateChanged(base::ConnectionState::Initial);
 }

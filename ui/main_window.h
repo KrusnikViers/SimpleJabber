@@ -5,6 +5,8 @@
 #include <QMainWindow>
 
 #include "core/client.h"
+#include "ui/connection_state_widget.h"
+#include "ui/login_widget.h"
 #include "ui_main_window.h"
 
 
@@ -19,17 +21,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow();
 
-public slots:
-    void onLoginRequested(const QString& jid, const QString& password);
-
 private:
     void setUpUIComponents();
 
     Ui::MainWindow ui_;
     core::Client   client_;
 
-    ui::LoginWidget*           login_widget_;
-    ui::ConnectionStateWidget* connection_state_widget_;
+    std::unique_ptr<ui::LoginWidget>           login_widget_;
+    std::unique_ptr<ui::ConnectionStateWidget> connection_state_widget_;
 };  // class MainWindow
 
 }  // namespace ui

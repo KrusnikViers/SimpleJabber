@@ -1,10 +1,5 @@
 #include "main_window.h"
 
-#include <cassert>
-
-#include "ui/connection_state_widget.h"
-#include "ui/login_widget.h"
-
 
 namespace ui {
 
@@ -16,30 +11,15 @@ MainWindow::MainWindow() : QMainWindow(nullptr)
 
 void MainWindow::setUpUIComponents()
 {
-    QStackedWidget* widgets_stack = ui_.widget->findChild<QStackedWidget*>("stacked_widget");
-
-    login_widget_ = dynamic_cast<LoginWidget*>(widgets_stack->widget(0));
-    login_widget_->reset();
-    QObject::connect(login_widget_,
-                     SIGNAL(loginRequested(QString,QString)),
-                     SLOT(onLoginRequested(QString,QString)));
-
-    connection_state_widget_ =
-            ui_.widget->findChild<ConnectionStateWidget*>("connection_state_widget");
+    connection_state_widget_.reset(new ui::ConnectionStateWidget(this, client_));
+    ui_.main_widget->layout()->addWidget(connection_state_widget_.get());
     connection_state_widget_->reset();
-    QObject::connect(&client_,
-                     SIGNAL(stateUpdate(base::ConnectionState)),
-                     connection_state_widget_,
-                     SLOT(onConnectionStateChanged(base::ConnectionState)));
-    QObject::connect(&client_,
-                     SIGNAL(error(base::ConnectionError)),
-                     connection_state_widget_,
-                     SLOT(onError(base::ConnectionError)));
-}
 
-void MainWindow::onLoginRequested(const QString &jid, const QString &password)
-{
-    client_.login(jid, password);
+    QStackedWidget* stacked_widget = ui_.main_widget->findChild<QStackedWidget*>("stacked_widget");
+    login_widget_.reset(new ui::LoginWidget(this, client_));
+    stacked_widget->addWidget(login_widget_.get());
+    login_widget_->resetLoginPage();
+    login_widget_->resetOptionsPage();
 }
 
 }  // namespace ui

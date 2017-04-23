@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="widget">
+  <widget class="QWidget" name="main_widget">
    <layout class="QVBoxLayout" name="_layout_main">
     <property name="spacing">
      <number>0</number>
@@ -37,31 +37,11 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QStackedWidget" name="stacked_widget">
-      <widget class="ui::LoginWidget" name="login_page"/>
-      <widget class="QWidget" name="page_2"/>
-     </widget>
-    </item>
-    <item>
-     <widget class="ui::ConnectionStateWidget" name="connection_state_widget" native="true"/>
+     <widget class="QStackedWidget" name="stacked_widget"/>
     </item>
    </layout>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>ui::LoginWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">ui/login_widget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ui::ConnectionStateWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">ui/connection_state_widget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
