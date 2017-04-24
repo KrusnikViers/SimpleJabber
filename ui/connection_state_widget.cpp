@@ -24,7 +24,7 @@ ConnectionStateWidget::ConnectionStateWidget(QWidget *parent, core::Client& clie
                      SIGNAL(stateUpdate(base::ConnectionState)),
                      SLOT(onConnectionStateChanged(base::ConnectionState)));
     QObject::connect(&client,
-                     SIGNAL(error(base::ConnectionError)),
+                     SIGNAL(errorOccured(base::ConnectionError)),
                      SLOT(onError(base::ConnectionError)));
 }
 

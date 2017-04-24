@@ -35,7 +35,7 @@ QString errorDescription(ConnectionError error)
     case ConnectionError::KeepAliveError:
         return QStringLiteral("Network timeout");
     case ConnectionError::NetworkNotFound:
-        return QStringLiteral("Network connection is not active");
+        return QStringLiteral("Host not found");
     case ConnectionError::NetworkSslFailed:
         return QStringLiteral("Authentication failed");
     case ConnectionError::NetworkProxyError:
@@ -63,12 +63,75 @@ QString errorDescription(ConnectionError error)
 
 ConnectionError toConnectionError(QAbstractSocket::SocketError error)
 {
-    return ConnectionError::UnknownError;
+    switch (error) {
+    case QAbstractSocket::HostNotFoundError:
+        return ConnectionError::NetworkNotFound;
+    case QAbstractSocket::SslHandshakeFailedError:
+    case QAbstractSocket::SslInternalError:
+    case QAbstractSocket::SslInvalidUserDataError:
+        return ConnectionError::NetworkSslFailed;
+    case QAbstractSocket::ProxyAuthenticationRequiredError:
+    case QAbstractSocket::ProxyConnectionRefusedError:
+    case QAbstractSocket::ProxyConnectionClosedError:
+    case QAbstractSocket::ProxyConnectionTimeoutError:
+    case QAbstractSocket::ProxyNotFoundError:
+    case QAbstractSocket::ProxyProtocolError:
+        return ConnectionError::NetworkProxyError;
+    case QAbstractSocket::ConnectionRefusedError:
+    case QAbstractSocket::RemoteHostClosedError:
+    case QAbstractSocket::SocketAccessError:
+    case QAbstractSocket::SocketResourceError:
+    case QAbstractSocket::SocketTimeoutError:
+    case QAbstractSocket::DatagramTooLargeError:
+    case QAbstractSocket::NetworkError:
+    case QAbstractSocket::AddressInUseError:
+    case QAbstractSocket::SocketAddressNotAvailableError:
+    case QAbstractSocket::UnsupportedSocketOperationError:
+    case QAbstractSocket::UnfinishedSocketOperationError:
+    case QAbstractSocket::OperationError:
+    case QAbstractSocket::TemporaryError:
+        return ConnectionError::NetworkError;
+    case QAbstractSocket::UnknownSocketError:
+    default:
+        return ConnectionError::UnknownError;
+    }
 }
 
 ConnectionError toConnectionError(QXmppStanza::Error::Condition error)
 {
-    return ConnectionError::UnknownError;
+    switch (error) {
+    case QXmppStanza::Error::BadRequest:
+    case QXmppStanza::Error::FeatureNotImplemented:
+    case QXmppStanza::Error::Conflict:
+    case QXmppStanza::Error::Gone:
+    case QXmppStanza::Error::ItemNotFound:
+    case QXmppStanza::Error::JidMalformed:
+    case QXmppStanza::Error::NotAcceptable:
+    case QXmppStanza::Error::UndefinedCondition:
+    case QXmppStanza::Error::RecipientUnavailable:
+    case QXmppStanza::Error::Redirect:
+        return ConnectionError::XmppBadRequest;
+    case QXmppStanza::Error::Forbidden:
+    case QXmppStanza::Error::NotAllowed:
+    case QXmppStanza::Error::NotAuthorized:
+    case QXmppStanza::Error::PaymentRequired:
+    case QXmppStanza::Error::RegistrationRequired:
+    case QXmppStanza::Error::ResourceConstraint:
+    case QXmppStanza::Error::SubscriptionRequired:
+        return ConnectionError::XmppForbidden;
+    case QXmppStanza::Error::InternalServerError:
+        return ConnectionError::XmppInternalServerError;
+    case QXmppStanza::Error::RemoteServerNotFound:
+        return ConnectionError::XmppRemoteServerNotFound;
+    case QXmppStanza::Error::RemoteServerTimeout:
+        return ConnectionError::XmppRemoteServerTimeout;
+    case QXmppStanza::Error::ServiceUnavailable:
+        return ConnectionError::XmppServiceUnavailable;
+    case QXmppStanza::Error::UnexpectedRequest:
+        return ConnectionError::XmppUnexpectedRequest;
+    default:
+        return ConnectionError::UnknownError;
+    }
 }
 
 }  // namespace base

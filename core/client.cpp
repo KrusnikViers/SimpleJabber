@@ -33,6 +33,20 @@ void Client::onQXmppStateUpdate(QXmppClient::State state)
 
 void Client::onQXmppError(QXmppClient::Error error)
 {
+    switch (error) {
+    case QXmppClient::NoError:
+        emit errorOccured(base::ConnectionError::NoError);
+        break;
+    case QXmppClient::KeepAliveError:
+        emit errorOccured(base::ConnectionError::KeepAliveError);
+        break;
+    case QXmppClient::SocketError:
+        emit errorOccured(base::toConnectionError(qxmpp_client_.socketError()));
+        break;
+    case QXmppClient::XmppStreamError:
+        emit errorOccured(base::toConnectionError(qxmpp_client_.xmppStreamError()));
+        break;
+    }
 }
 
 }  // namespace core
