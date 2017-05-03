@@ -16,13 +16,16 @@ public:
     void resetOptionsPage();
 
 private slots:
-    void onBackClicked();
-    void onEnterClicked();
+    void onLoginClicked();
     void onOptionsClicked();
+    void onApplyClicked();
+    void onCancelClicked();
+    void onProxyModeChanged();
 
 private:
     Ui::LoginWidget ui_;
-    core::Client&   client_;
+
+    core::Client& client_;
 };  // class LoginWidget
 
 }  // namespace ui

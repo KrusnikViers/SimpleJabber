@@ -22,7 +22,8 @@ public slots:
 
 private:
     Ui::ConnectionStateWidget ui_;
-    core::Client&             client_;
+
+    core::Client& client_;
 };  // ConnectionStateWidget
 
 }  // namespace ui

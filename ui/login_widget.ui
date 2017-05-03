@@ -38,7 +38,7 @@
    <item>
     <widget class="QStackedWidget" name="stacked_widget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="login_page">
       <layout class="QGridLayout" name="_layout_login">
@@ -55,7 +55,7 @@
          </property>
         </spacer>
        </item>
-       <item row="7" column="2">
+       <item row="5" column="2">
         <spacer name="_spacer_3">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -68,46 +68,8 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="QLabel" name="jid_label">
-         <property name="text">
-          <string>Login:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="1">
-        <widget class="QPushButton" name="options">
-         <property name="text">
-          <string>Options</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="3">
-        <widget class="QLineEdit" name="jid">
-         <property name="placeholderText">
-          <string>your_login@domain.com</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0" colspan="3">
-        <widget class="QCheckBox" name="is_autologin_enabled">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="text">
-          <string>Autologin on next launch</string>
-         </property>
-        </widget>
-       </item>
        <item row="3" column="0" colspan="3">
-        <widget class="QLabel" name="password_label">
-         <property name="text">
-          <string>Password:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0" colspan="3">
-        <widget class="QCheckBox" name="is_login_remembered">
+        <widget class="QCheckBox" name="remember_login_check">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -116,27 +78,44 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0" colspan="3">
-        <widget class="QLineEdit" name="password">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="echoMode">
-          <enum>QLineEdit::Password</enum>
-         </property>
+       <item row="1" column="0" colspan="3">
+        <widget class="QLineEdit" name="jid_edit">
          <property name="placeholderText">
-          <string>Your password</string>
+          <string>Your_login@domain</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
-        <widget class="QPushButton" name="enter">
+       <item row="5" column="1">
+        <widget class="QPushButton" name="options_button">
+         <property name="text">
+          <string>Options</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="3">
+        <widget class="QCheckBox" name="autologin_check">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Autologin on next launch (unsafe)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QPushButton" name="login_button">
          <property name="text">
           <string>Enter</string>
          </property>
+         <property name="default">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
-       <item row="8" column="0" colspan="3">
+       <item row="6" column="0" colspan="3">
         <spacer name="_spacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -149,27 +128,229 @@
          </property>
         </spacer>
        </item>
+       <item row="2" column="0" colspan="3">
+        <widget class="QLineEdit" name="password_edit">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="echoMode">
+          <enum>QLineEdit::PasswordEchoOnEdit</enum>
+         </property>
+         <property name="placeholderText">
+          <string>Password</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="options_page">
-      <widget class="QPushButton" name="back">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>260</y>
-         <width>75</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>back</string>
-       </property>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QGroupBox" name="_connection_settings_layout">
+         <property name="title">
+          <string>Additional connection settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLineEdit" name="server_host_edit">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="placeholderText">
+             <string>Server host</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="server_port_edit">
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="maxLength">
+             <number>5</number>
+            </property>
+            <property name="placeholderText">
+             <string>Port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QLineEdit" name="resource_edit">
+            <property name="placeholderText">
+             <string>Resource</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="_proxy_layout">
+         <property name="title">
+          <string>Proxy settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QComboBox" name="proxy_mode">
+            <item>
+             <property name="text">
+              <string>Disabled</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Socks5</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>HTTP</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <spacer name="_spacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>148</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QLineEdit" name="proxy_host_edit">
+            <property name="placeholderText">
+             <string>Host</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="proxy_port_edit">
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="maxLength">
+             <number>5</number>
+            </property>
+            <property name="placeholderText">
+             <string>Port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QLineEdit" name="proxy_username_edit">
+            <property name="placeholderText">
+             <string>Username</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="3">
+           <widget class="QLineEdit" name="proxy_password_edit">
+            <property name="echoMode">
+             <enum>QLineEdit::PasswordEchoOnEdit</enum>
+            </property>
+            <property name="placeholderText">
+             <string>Password</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>238</width>
+           <height>23</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="_options_button_layout">
+         <item>
+          <spacer name="_spacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="back_button">
+           <property name="text">
+            <string>Cancel</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="apply_button">
+           <property name="text">
+            <string>Apply</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>jid_edit</tabstop>
+  <tabstop>password_edit</tabstop>
+  <tabstop>remember_login_check</tabstop>
+  <tabstop>autologin_check</tabstop>
+  <tabstop>login_button</tabstop>
+  <tabstop>options_button</tabstop>
+  <tabstop>server_host_edit</tabstop>
+  <tabstop>server_port_edit</tabstop>
+  <tabstop>resource_edit</tabstop>
+  <tabstop>proxy_mode</tabstop>
+  <tabstop>proxy_host_edit</tabstop>
+  <tabstop>proxy_port_edit</tabstop>
+  <tabstop>proxy_username_edit</tabstop>
+  <tabstop>proxy_password_edit</tabstop>
+  <tabstop>back_button</tabstop>
+  <tabstop>apply_button</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

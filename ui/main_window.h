@@ -25,7 +25,8 @@ private:
     void setUpUIComponents();
 
     Ui::MainWindow ui_;
-    core::Client   client_;
+
+    core::Client client_;
 
     std::unique_ptr<ui::LoginWidget>           login_widget_;
     std::unique_ptr<ui::ConnectionStateWidget> connection_state_widget_;
