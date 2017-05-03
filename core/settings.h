@@ -17,8 +17,16 @@ public:
     void setLogging(settings::Logging value);
     QString logFilePath() const;
 
+    settings::Authentication authentication() const;
+    void setAuthentication(settings::Authentication value);
+
+    settings::Proxy proxy() const;
+    void setProxy(settings::Proxy value);
+
 signals:
     void loggingTypeUpdated(settings::Logging value);
+    void authenticationUpdated();
+    void proxyUpdated();
 
 private:
     QSettings settings_;
