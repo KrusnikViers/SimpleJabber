@@ -1,3 +1,7 @@
 [submodule "third_party/qxmpp"]
 	path = third_party/qxmpp
 	url = https://github.com/qxmpp-project/qxmpp.git
+[submodule "third_party/qtkeychain"]
+	path = third_party/qtkeychain
+	url = https://github.com/frankosterfeld/qtkeychain
+	branch = 0.8

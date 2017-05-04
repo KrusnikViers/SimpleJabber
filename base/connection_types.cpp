@@ -57,6 +57,7 @@ QString errorDescription(ConnectionError error)
     case ConnectionError::XmppUnexpectedRequest:
         return QStringLiteral("Unexpected XMPP request");
     case ConnectionError::UnknownError:
+    default:
         return QStringLiteral("Unknown error occured");
     }
 }
