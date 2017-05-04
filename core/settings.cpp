@@ -1,6 +1,6 @@
 #include "settings.h"
 
-#include <cassert>
+#include <QHostInfo>
 
 
 namespace {
@@ -8,10 +8,8 @@ namespace {
 QDir dataDirectory()
 {
     QDir data_directory(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
-    if (!data_directory.exists()) {
+    if (!data_directory.exists())
         data_directory.mkpath(".");
-        assert(data_directory.exists());
-    }
     return data_directory;
 }
 
@@ -72,7 +70,7 @@ Authentication Settings::authentication() const
     result.is_login_stored = settings_.value(kAuthSaveLoginName).toBool();
     result.host = settings_.value(kAuthHostName).toString();
     result.port = settings_.value(kAuthPortName).toUInt();
-    result.resource = settings_.value(kAuthResourceName).toString();
+    result.resource = settings_.value(kAuthResourceName, QVariant("SJ_" + QHostInfo::localHostName())).toString();
     return result;
 }
 
