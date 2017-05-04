@@ -21,6 +21,9 @@ public:
 
     void login(const QString& jid, const QString& password);
 
+    base::ConnectionState connectionState() const { return state_; }
+    base::UserStatus userStatus() const { return status_; }
+
     Settings& settings() { return settings_; }
     const Settings& settings() const { return settings_; }
 

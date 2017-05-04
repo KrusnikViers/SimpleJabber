@@ -10,7 +10,8 @@ class LoginWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit LoginWidget(QWidget *parent, core::Client& client);
+    LoginWidget(QWidget *parent, core::Client& client);
+    ~LoginWidget() override;
 
     void resetLoginPage();
     void resetOptionsPage();
@@ -21,6 +22,7 @@ private slots:
     void onApplyClicked();
     void onCancelClicked();
     void onProxyModeChanged();
+    void onConnectionStateChanged();
 
 private:
     Ui::LoginWidget ui_;
