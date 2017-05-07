@@ -1,6 +1,7 @@
 [submodule "third_party/qxmpp"]
 	path = third_party/qxmpp
-	url = https://github.com/qxmpp-project/qxmpp.git
+	url = https://github.com/KrusnikViers/qxmpp/
+	branch = clang-warnings-fix
 [submodule "third_party/qtkeychain"]
 	path = third_party/qtkeychain
 	url = https://github.com/KrusnikViers/qtkeychain

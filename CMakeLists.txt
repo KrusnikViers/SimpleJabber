@@ -24,6 +24,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 add_definitions(-Wall)
+add_definitions(-Werror)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
