@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QHBoxLayout" name="_layout_main">
+  <layout class="QHBoxLayout" name="_login_widget_layout">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -41,7 +41,7 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="login_page">
-      <layout class="QGridLayout" name="_layout_login">
+      <layout class="QGridLayout" name="_login_page_layout">
        <item row="0" column="0" colspan="3">
         <spacer name="_spacer_1">
          <property name="orientation">
@@ -69,7 +69,7 @@
         </spacer>
        </item>
        <item row="3" column="0" colspan="3">
-        <widget class="QCheckBox" name="remember_login_check">
+        <widget class="QCheckBox" name="login_stored_check">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -79,9 +79,12 @@
         </widget>
        </item>
        <item row="1" column="0" colspan="3">
-        <widget class="QLineEdit" name="jid_edit">
+        <widget class="QLineEdit" name="login_edit">
+         <property name="text">
+          <string/>
+         </property>
          <property name="placeholderText">
-          <string>Your_login@domain</string>
+          <string>Login@domain.com</string>
          </property>
          <property name="clearButtonEnabled">
           <bool>true</bool>
@@ -96,7 +99,7 @@
         </widget>
        </item>
        <item row="4" column="0" colspan="3">
-        <widget class="QCheckBox" name="autologin_check">
+        <widget class="QCheckBox" name="autoauth_enabled_check">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -106,7 +109,7 @@
         </widget>
        </item>
        <item row="5" column="0">
-        <widget class="QPushButton" name="login_button">
+        <widget class="QPushButton" name="connect_button">
          <property name="text">
           <string>Enter</string>
          </property>
@@ -147,15 +150,15 @@
       </layout>
      </widget>
      <widget class="QWidget" name="options_page">
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="_options_page_layout">
        <item>
-        <widget class="QGroupBox" name="_connection_settings_layout">
+        <widget class="QGroupBox" name="_connection_settings_groupbox">
          <property name="title">
           <string>Additional connection settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2">
+         <layout class="QGridLayout" name="_connection_settings_layout">
           <item row="0" column="0">
-           <widget class="QLineEdit" name="server_host_edit">
+           <widget class="QLineEdit" name="host_edit">
             <property name="text">
              <string/>
             </property>
@@ -168,7 +171,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="server_port_edit">
+           <widget class="QLineEdit" name="port_edit">
             <property name="maximumSize">
              <size>
               <width>75</width>
@@ -206,13 +209,13 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="_proxy_layout">
+        <widget class="QGroupBox" name="_proxy_groupbox">
          <property name="title">
           <string>Proxy settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout" name="_proxy_layout">
           <item row="0" column="0">
-           <widget class="QComboBox" name="proxy_mode">
+           <widget class="QComboBox" name="proxy_mode_cbox">
             <item>
              <property name="text">
               <string>Disabled</string>
@@ -279,7 +282,7 @@
            </widget>
           </item>
           <item row="2" column="0" colspan="3">
-           <widget class="QLineEdit" name="proxy_username_edit">
+           <widget class="QLineEdit" name="proxy_login_edit">
             <property name="placeholderText">
              <string>Username</string>
             </property>
@@ -305,7 +308,7 @@
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer">
+        <spacer name="_spacer_6">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -333,14 +336,14 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="back_button">
+          <widget class="QPushButton" name="options_cancel_button">
            <property name="text">
             <string>Cancel</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="apply_button">
+          <widget class="QPushButton" name="options_apply_button">
            <property name="text">
             <string>Apply</string>
            </property>
@@ -355,22 +358,22 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>jid_edit</tabstop>
+  <tabstop>login_edit</tabstop>
   <tabstop>password_edit</tabstop>
-  <tabstop>remember_login_check</tabstop>
-  <tabstop>autologin_check</tabstop>
-  <tabstop>login_button</tabstop>
+  <tabstop>login_stored_check</tabstop>
+  <tabstop>autoauth_enabled_check</tabstop>
+  <tabstop>connect_button</tabstop>
   <tabstop>options_button</tabstop>
-  <tabstop>server_host_edit</tabstop>
-  <tabstop>server_port_edit</tabstop>
+  <tabstop>host_edit</tabstop>
+  <tabstop>port_edit</tabstop>
   <tabstop>resource_edit</tabstop>
-  <tabstop>proxy_mode</tabstop>
+  <tabstop>proxy_mode_cbox</tabstop>
   <tabstop>proxy_host_edit</tabstop>
   <tabstop>proxy_port_edit</tabstop>
-  <tabstop>proxy_username_edit</tabstop>
+  <tabstop>proxy_login_edit</tabstop>
   <tabstop>proxy_password_edit</tabstop>
-  <tabstop>back_button</tabstop>
-  <tabstop>apply_button</tabstop>
+  <tabstop>options_cancel_button</tabstop>
+  <tabstop>options_apply_button</tabstop>
  </tabstops>
  <resources/>
  <connections/>

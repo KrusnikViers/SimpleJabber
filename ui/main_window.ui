@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="main_widget">
-   <layout class="QVBoxLayout" name="_layout_main">
+   <layout class="QVBoxLayout" name="_main_window_layout">
     <property name="spacing">
      <number>0</number>
     </property>

@@ -17,10 +17,10 @@ public:
     void resetOptionsPage();
 
 private slots:
-    void onLoginClicked();
+    void onConnectClicked();
     void onOptionsClicked();
-    void onApplyClicked();
-    void onCancelClicked();
+    void onOptionsApplyClicked();
+    void onOptionsCancelClicked();
     void onProxyModeChanged();
     void onConnectionStateChanged();
 
