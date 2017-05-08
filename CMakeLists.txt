@@ -32,9 +32,9 @@ find_package(Qt5Widgets REQUIRED)
 add_subdirectory(base)
 add_subdirectory(core)
 add_subdirectory(ui)
-add_subdirectory(third_party)
-
 include_directories(ui)
+
+add_subdirectory(third_party EXCLUDE_FROM_ALL)
 include_directories(third_party/qxmpp/src/base)
 include_directories(third_party/qxmpp/src/client)
 

@@ -13,25 +13,42 @@ enum class Logging : int {
     None
 };
 
-struct Authentication {
+struct Credentials {
     QString login;
     QString password;
-    bool    is_login_stored;
-    bool    is_autologin_enabled;
 
-    // Optional settings.
-    QString host;
-    quint16 port;
-    QString resource;
+    bool operator==(const Credentials& other) const
+    {
+        return login == other.login && password == other.password;
+    }
+};
+
+struct Connection {
+    Credentials user;
+    QString     resource;
+    QUrl        server;
+    bool        is_login_stored = false;
+    bool        is_auto_auth_enabled = false;
+
+    bool operator==(const Connection& other) const
+    {
+        return user == other.user &&
+               resource == other.resource &&
+               server == other.server &&
+               is_login_stored == other.is_login_stored &&
+               is_auto_auth_enabled == other.is_auto_auth_enabled;
+    }
 };
 
 struct Proxy {
     QNetworkProxy::ProxyType type;
+    Credentials              user;
+    QUrl                     server;
 
-    QString host;
-    quint16 port;
-    QString login;
-    QString password;
+    bool operator==(const Proxy& other)
+    {
+        return type == other.type && user == other.user && server == other.server;
+    }
 };
 
 }  // namespace settings

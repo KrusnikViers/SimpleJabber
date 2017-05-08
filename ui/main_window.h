@@ -21,6 +21,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow();
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
 private:
     void setUpUIComponents();
 
@@ -30,6 +33,8 @@ private:
 
     std::unique_ptr<ui::LoginWidget>           login_widget_;
     std::unique_ptr<ui::ConnectionStateWidget> connection_state_widget_;
+
+    std::unique_ptr<QEventLoopLocker> lock_;
 };  // class MainWindow
 
 }  // namespace ui

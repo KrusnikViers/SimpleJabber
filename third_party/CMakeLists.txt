@@ -52,8 +52,13 @@ endforeach()
 option(BUILD_WITH_QT4 "Build qtkeychain with Qt4 no matter if Qt5 was found" OFF)
 option(BUILD_TRANSLATIONS "Build translations" OFF)
 option(QTKEYCHAIN_STATIC "Build static library" ON)
+set(CMAKE_AUTOMOC OFF)
+set(CMAKE_AUTOUIC OFF)
+set(CMAKE_AUTORCC OFF)
 add_subdirectory(qtkeychain)
-include_directories(qtkeychain)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
 
 ##############

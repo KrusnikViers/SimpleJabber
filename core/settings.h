@@ -2,6 +2,7 @@
 
 #include <QtCore>
 
+#include "core/settings_secure.h"
 #include "core/settings_types.h"
 
 
@@ -13,22 +14,30 @@ class Settings : public QObject
 public:
     Settings();
 
-    settings::Logging logging() const;
+    settings::Logging logging() const { return cached_logging_; }
     void setLogging(settings::Logging value);
     QString logFilePath() const;
 
-    settings::Authentication authentication() const;
-    void setAuthentication(settings::Authentication value);
+    settings::Connection connection() const { return cached_connection_; }
+    void setConnection(settings::Connection value);
 
-    settings::Proxy proxy() const;
+    settings::Proxy proxy() const { return cached_proxy_; }
     void setProxy(settings::Proxy value);
 
 signals:
-    void loggingTypeUpdated(settings::Logging value);
-    void authenticationUpdated();
+    void loggingUpdated();
+    void connectionUpdated();
     void proxyUpdated();
 
+private slots:
+    void connectionPasswordRead(QKeychain::Job* job);
+    void proxyPasswordRead(QKeychain::Job* job);
+
 private:
+    settings::Logging    cached_logging_;
+    settings::Connection cached_connection_;
+    settings::Proxy      cached_proxy_;
+
     QSettings settings_;
 };
 

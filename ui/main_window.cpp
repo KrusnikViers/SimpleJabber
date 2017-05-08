@@ -7,6 +7,15 @@ MainWindow::MainWindow() : QMainWindow(nullptr)
 {
     ui_.setupUi(this);
     setUpUIComponents();
+
+    lock_.reset(new QEventLoopLocker());
+}
+
+void MainWindow::closeEvent(QCloseEvent* event) {
+    connection_state_widget_.reset();
+    login_widget_.reset();
+    lock_.reset();
+    QMainWindow::closeEvent(event);
 }
 
 void MainWindow::setUpUIComponents()
