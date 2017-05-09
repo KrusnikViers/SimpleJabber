@@ -41,8 +41,8 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="login_page">
-      <layout class="QGridLayout" name="_login_page_layout">
-       <item row="0" column="0" colspan="3">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
         <spacer name="_spacer_1">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -55,30 +55,7 @@
          </property>
         </spacer>
        </item>
-       <item row="5" column="2">
-        <spacer name="_spacer_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>117</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="3" column="0" colspan="3">
-        <widget class="QCheckBox" name="login_stored_check">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="text">
-          <string>Remember login</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="3">
+       <item>
         <widget class="QLineEdit" name="login_edit">
          <property name="text">
           <string/>
@@ -91,47 +68,7 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
-        <widget class="QPushButton" name="options_button">
-         <property name="text">
-          <string>Options</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0" colspan="3">
-        <widget class="QCheckBox" name="autoauth_enabled_check">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="text">
-          <string>Autologin on next launch (unsafe)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QPushButton" name="connect_button">
-         <property name="text">
-          <string>Enter</string>
-         </property>
-         <property name="default">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0" colspan="3">
-        <spacer name="_spacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="2" column="0" colspan="3">
+       <item>
         <widget class="QLineEdit" name="password_edit">
          <property name="text">
           <string/>
@@ -146,6 +83,98 @@
           <bool>true</bool>
          </property>
         </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="_layout_2">
+         <item>
+          <widget class="QPushButton" name="connect_button">
+           <property name="text">
+            <string>Enter</string>
+           </property>
+           <property name="default">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="options_button">
+           <property name="text">
+            <string>Options</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="_spacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="_layout_1">
+         <item>
+          <widget class="QComboBox" name="on_launch_mode_cbox">
+           <property name="minimumSize">
+            <size>
+             <width>180</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>Do not save access data</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Store login between lauches</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Autologin on launch</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="_spacer_7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="_spacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -360,10 +389,6 @@
  <tabstops>
   <tabstop>login_edit</tabstop>
   <tabstop>password_edit</tabstop>
-  <tabstop>login_stored_check</tabstop>
-  <tabstop>autoauth_enabled_check</tabstop>
-  <tabstop>connect_button</tabstop>
-  <tabstop>options_button</tabstop>
   <tabstop>host_edit</tabstop>
   <tabstop>port_edit</tabstop>
   <tabstop>resource_edit</tabstop>

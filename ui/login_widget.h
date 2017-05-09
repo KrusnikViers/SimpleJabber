@@ -22,7 +22,10 @@ private slots:
     void onOptionsApplyClicked();
     void onOptionsCancelClicked();
     void onProxyModeChanged();
+
     void onConnectionStateChanged();
+    void onProxySettingsUpdated();
+    void onConnectionSettingsUpdated();
 
 private:
     Ui::LoginWidget ui_;

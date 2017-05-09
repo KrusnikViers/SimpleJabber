@@ -18,6 +18,11 @@ QString settingsFilePath()
     return dataDirectory().absoluteFilePath(QStringLiteral("settings.ini"));
 }
 
+template<class CustomEnum>
+CustomEnum readCustomEnum(const QSettings& settings, const QString& key, CustomEnum default_value) {
+    return static_cast<CustomEnum>(settings.value(key, static_cast<int>(default_value)).toInt());
+}
+
 const QString kLoggingPrefix = "logging";
 const QString kConnectionPrefix = "connection";
 const QString kProxyPrefix = "proxy";
@@ -26,8 +31,7 @@ const QString kLoginName = "login";
 const QString kPasswordName = "password";
 const QString kResourceName = "resource";
 const QString kServerUrlName = "server_url";
-const QString kLoginStoredName = "store_login";
-const QString kAutoAuthEnabledName = "auto_auth";
+const QString kOnLaunchModeName = "on_launch_mode";
 const QString kTypeName = "type";
 
 }  // namespace
@@ -43,22 +47,16 @@ Settings::Settings() :
 {
     // Read logging settings.
     settings_.beginGroup(kLoggingPrefix);
-    if (settings_.contains(kTypeName)) {
-        const int type = settings_.value(kTypeName).toInt();
-        cached_logging_ = static_cast<Logging>(type);
-    } else {
-        cached_logging_ = Logging::None;
-        settings_.setValue(kTypeName, static_cast<int>(cached_logging_));
-    }
+    cached_logging_ = readCustomEnum(settings_, kTypeName, Logging::None);
     settings_.endGroup();
 
     // Read connection settings.
     settings_.beginGroup(kConnectionPrefix);
-    cached_connection_.is_login_stored = settings_.value(kLoginStoredName).toBool();
-    if (cached_connection_.is_login_stored) {
+    cached_connection_.on_launch_mode =
+            readCustomEnum(settings_, kOnLaunchModeName, Connection::OnLaunchMode::ClearLogin);
+    if (cached_connection_.on_launch_mode != Connection::OnLaunchMode::ClearLogin) {
         cached_connection_.user.login = settings_.value(kLoginName).toString();
-        cached_connection_.is_auto_auth_enabled = settings_.value(kAutoAuthEnabledName).toBool();
-        if (cached_connection_.is_auto_auth_enabled) {
+        if (cached_connection_.on_launch_mode == Connection::OnLaunchMode::AutoLogin) {
             // Delete itself after finished.
             secure::ReadJob* job = new secure::ReadJob(this);
             job->setKey(kConnectionPrefix + kPasswordName);
@@ -73,13 +71,7 @@ Settings::Settings() :
 
     // Read proxy settings.
     settings_.beginGroup(kProxyPrefix);
-    if (settings_.contains(kTypeName)) {
-        const int type = settings_.value(kTypeName).toInt();
-        cached_proxy_.type = static_cast<QNetworkProxy::ProxyType>(type);
-    } else {
-        cached_proxy_.type = QNetworkProxy::NoProxy;
-        settings_.setValue(kTypeName, static_cast<int>(cached_proxy_.type));
-    }
+    cached_proxy_.type = readCustomEnum(settings_, kTypeName, QNetworkProxy::NoProxy);
     if (cached_proxy_.type != QNetworkProxy::NoProxy) {
         cached_proxy_.server = settings_.value(kServerUrlName).toUrl();
         cached_proxy_.user.login = settings_.value(kLoginName).toString();
@@ -116,18 +108,15 @@ void Settings::setConnection(Connection value)
     cached_connection_ = value;
     settings_.beginGroup(kConnectionPrefix);
     settings_.remove("");
-    settings_.setValue(kLoginStoredName, value.is_login_stored);
-    if (value.is_login_stored) {
+    settings_.setValue(kOnLaunchModeName, static_cast<int>(value.on_launch_mode));
+    if (value.on_launch_mode == Connection::OnLaunchMode::StoreLogin)
         settings_.setValue(kLoginName, value.user.login);
-        settings_.setValue(kAutoAuthEnabledName, value.is_auto_auth_enabled);
-        if (value.is_auto_auth_enabled) {
-            // Delete itself after finished.
-            secure::WriteJob* job = new secure::WriteJob(this);
-            job->setKey(kConnectionPrefix + kPasswordName);
-            job->setSettings(&settings_);
-            job->start();
-        }
-    }
+    // Delete itself after finished.
+    secure::WriteJob* job = new secure::WriteJob(this);
+    job->setKey(kConnectionPrefix + kPasswordName);
+    job->setTextData(value.on_launch_mode == Connection::OnLaunchMode::AutoLogin ? value.user.password : "");
+    job->setSettings(&settings_);
+    job->start();
     settings_.setValue(kServerUrlName, value.server);
     settings_.setValue(kResourceName, value.resource);
     settings_.endGroup();
@@ -145,12 +134,13 @@ void Settings::setProxy(Proxy value)
     if (value.type != QNetworkProxy::NoProxy) {
         settings_.setValue(kServerUrlName, value.server);
         settings_.setValue(kLoginName, value.user.login);
-        // Delete itself after finished.
-        secure::WriteJob* job = new secure::WriteJob(this);
-        job->setKey(kProxyPrefix + kPasswordName);
-        job->setSettings(&settings_);
-        job->start();
     }
+    // Delete itself after finished.
+    secure::WriteJob* job = new secure::WriteJob(this);
+    job->setKey(kProxyPrefix + kPasswordName);
+    job->setTextData(value.type != QNetworkProxy::NoProxy ? value.user.password : "");
+    job->setSettings(&settings_);
+    job->start();
     settings_.endGroup();
     emit proxyUpdated();
 }

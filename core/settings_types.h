@@ -24,19 +24,23 @@ struct Credentials {
 };
 
 struct Connection {
-    Credentials user;
-    QString     resource;
-    QUrl        server;
-    bool        is_login_stored = false;
-    bool        is_auto_auth_enabled = false;
+    enum class OnLaunchMode {
+        ClearLogin,
+        StoreLogin,
+        AutoLogin
+    };
+
+    Credentials  user;
+    QUrl         server;
+    QString      resource;
+    OnLaunchMode on_launch_mode;
 
     bool operator==(const Connection& other) const
     {
         return user == other.user &&
-               resource == other.resource &&
                server == other.server &&
-               is_login_stored == other.is_login_stored &&
-               is_auto_auth_enabled == other.is_auto_auth_enabled;
+               resource == other.resource &&
+               on_launch_mode == other.on_launch_mode;
     }
 };
 
