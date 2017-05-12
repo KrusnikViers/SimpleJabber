@@ -2,6 +2,9 @@
 
 #include <QHostInfo>
 
+#include "base/project_info.h"
+#include "third_party/qtkeychain/keychain.h"
+
 
 namespace {
 
@@ -91,6 +94,10 @@ Settings::Settings() :
         job->start();
     }
     settings_.endGroup();
+
+#ifndef NDEBUG
+    logConfigurationForDevelopment();
+#endif
 }
 
 void Settings::setLogging(Logging value)
@@ -169,6 +176,18 @@ void Settings::proxyPasswordRead(QKeychain::Job* job)
         cached_proxy_.user.password = secure_job->textData();
         emit proxyUpdated();
     }
+}
+
+void Settings::logConfigurationForDevelopment() const
+{
+#ifndef NDEBUG
+    qDebug() << "Project:       " << base::kProjectFullName << " v." << base::kProjectFullVersion;
+    qDebug() << "SSL:           " << (base::sslSupported() ? "enabled" : "disabled");
+    qDebug() << "SSL ver.:      " << base::sslVersion();
+    qDebug() << "Storage:       " << dataDirectory().absolutePath();
+    qDebug() << "Settings:      " << settingsFilePath();
+    qDebug() << "Keychain ver.: " << QTKEYCHAIN_VERSION;
+#endif
 }
 
 }  // namespace core

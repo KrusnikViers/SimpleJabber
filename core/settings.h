@@ -30,6 +30,8 @@ signals:
     void proxyUpdated();
 
 private slots:
+    void logConfigurationForDevelopment() const;
+
     void connectionPasswordRead(QKeychain::Job* job);
     void proxyPasswordRead(QKeychain::Job* job);
 
