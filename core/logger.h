@@ -19,11 +19,13 @@ public:
     ~Logger();
 
 public slots:
-    void updateLoggingType(settings::Logging value);
+    void updateLogging();
 
 private:
+    Settings&    settings_;
+    QXmppClient& qxmpp_client_;
+
     std::unique_ptr<QXmppLogger> logger_;
-    QXmppClient&                 qxmpp_client_;
 };
 
 }  // namespace core

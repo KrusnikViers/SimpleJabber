@@ -1,5 +1,7 @@
 #include "main_window.h"
 
+#include "base/project_info.h"
+
 
 namespace ui {
 
@@ -7,6 +9,7 @@ MainWindow::MainWindow() : QMainWindow(nullptr)
 {
     ui_.setupUi(this);
     setUpUIComponents();
+    setWindowTitle(base::kProjectFullName);
 
     lock_.reset(new QEventLoopLocker());
 }

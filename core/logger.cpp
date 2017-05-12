@@ -4,17 +4,15 @@
 namespace core {
 
 Logger::Logger(Settings& settings, QXmppClient& qxmpp_client) :
-    logger_(new QXmppLogger(this)),
-    qxmpp_client_(qxmpp_client)
+    settings_(settings),
+    qxmpp_client_(qxmpp_client),
+    logger_(new QXmppLogger(this))
 {
-    logger_->setLogFilePath(settings.logFilePath());
+    logger_->setLogFilePath(settings_.logFilePath());
     qxmpp_client.setLogger(logger_.get());
 
-    settings.setLogging(settings.logging());
-    updateLoggingType(settings.logging());
-    QObject::connect(&settings,
-                     SIGNAL(loggingTypeUpdated(settings::Logging)),
-                     SLOT(updateLoggingType(settings::Logging)));
+    updateLogging();
+    QObject::connect(&settings, SIGNAL(loggingUpdated()), SLOT(updateLogging()));
 }
 
 Logger::~Logger()
@@ -22,9 +20,9 @@ Logger::~Logger()
     qxmpp_client_.setLogger(nullptr);
 }
 
-void Logger::updateLoggingType(settings::Logging value)
+void Logger::updateLogging()
 {
-    switch (value) {
+    switch (settings_.logging()) {
     case settings::Logging::None:
         logger_->setLoggingType(QXmppLogger::NoLogging);
         break;
