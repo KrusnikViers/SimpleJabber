@@ -7,9 +7,13 @@ namespace {
 
 QDir dataDirectory()
 {
+#ifdef NDEBUG
     QDir data_directory(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
     if (!data_directory.exists())
         data_directory.mkpath(".");
+#else
+    QDir data_directory(QDir::current());
+#endif
     return data_directory;
 }
 
@@ -47,7 +51,11 @@ Settings::Settings() :
 {
     // Read logging settings.
     settings_.beginGroup(kLoggingPrefix);
+#ifdef NDEBUG
     cached_logging_ = readCustomEnum(settings_, kTypeName, Logging::None);
+#else
+    cached_logging_ = readCustomEnum(settings_, kTypeName, Logging::Stdout);
+#endif
     settings_.endGroup();
 
     // Read connection settings.
