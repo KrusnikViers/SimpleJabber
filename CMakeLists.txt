@@ -3,7 +3,7 @@ cmake_policy(SET CMP0020 NEW)
 cmake_policy(SET CMP0048 NEW)
 cmake_policy(SET CMP0043 NEW)
 
-project(SimpleJabber VERSION 1.0.0 LANGUAGES C CXX)
+project(SimpleJabber VERSION 1.0.0 LANGUAGES CXX)
 
 # Setting up output subdirectories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/out/bin)
@@ -28,10 +28,10 @@ add_definitions(-Werror)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
-# Components
-add_subdirectory(base)
-add_subdirectory(core)
-add_subdirectory(ui)
+# Components (records added to SOURCE_FILES variable)
+add_subdirectory(base EXCLUDE_FROM_ALL)
+add_subdirectory(core EXCLUDE_FROM_ALL)
+add_subdirectory(ui EXCLUDE_FROM_ALL)
 include_directories(ui)
 
 add_subdirectory(third_party EXCLUDE_FROM_ALL)
@@ -42,8 +42,7 @@ include_directories(third_party/qxmpp/src/client)
 ###########################################
 # sjabber (shared Qt and OpenSSL libraries)
 ###########################################
-set(SRC ${SRC} main.cpp)
-add_executable(sjabber ${SRC})
+add_executable(sjabber main.cpp ${SOURCE_FILES})
 add_dependencies(sjabber shared-third-party qxmpp-static qt5keychain)
 qt5_use_modules(sjabber Network Widgets)
 target_link_libraries(sjabber qxmpp-static qt5keychain)

@@ -64,7 +64,7 @@ set(CMAKE_AUTORCC ON)
 ##############
 # qxmpp-static
 ##############
-project(qxmpp-static C CXX)
+project(qxmpp-static CXX)
 set(QXMPP_VERSION 0.9.3)
 include_directories(qxmpp/src/base)
 include_directories(qxmpp/src/client)

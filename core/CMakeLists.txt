@@ -1,5 +1,7 @@
-set(SRC
-    ${SRC}
+# Core sources allowed to include only third-party and base source files.
+
+set(SOURCE_FILES
+    ${SOURCE_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/client.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/client.h
     ${CMAKE_CURRENT_SOURCE_DIR}/logger.cpp

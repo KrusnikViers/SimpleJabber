@@ -1,5 +1,7 @@
-set(SRC
-    ${SRC}
+# UI sources have no restrictions for including.
+
+set(SOURCE_FILES
+    ${SOURCE_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/chat_list_widget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/chat_list_widget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/chat_list_widget.ui
