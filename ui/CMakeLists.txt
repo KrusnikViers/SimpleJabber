@@ -1,13 +1,27 @@
 set(SRC
     ${SRC}
+    ${CMAKE_CURRENT_SOURCE_DIR}/chat_list_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/chat_list_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/chat_list_widget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/chat_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/chat_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/chat_widget.ui
     ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/header_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/header_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/header_widget.ui
     ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.ui
-    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/main_window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/main_window.h
     ${CMAKE_CURRENT_SOURCE_DIR}/main_window.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/settings_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/settings_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/settings_widget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/user_list_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/user_list_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/user_list_widget.ui
     PARENT_SCOPE)

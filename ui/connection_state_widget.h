@@ -1,6 +1,5 @@
 #pragma once
 
-#include "base/connection_types.h"
 #include "core/client.h"
 #include "ui_connection_state_widget.h"
 

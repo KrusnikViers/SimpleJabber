@@ -1,4 +1,4 @@
-#include "login_widget.h"
+#include "ui/login_widget.h"
 
 #include "core/settings.h"
 

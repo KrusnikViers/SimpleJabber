@@ -42,11 +42,9 @@ include_directories(third_party/qxmpp/src/client)
 ###########################################
 # sjabber (shared Qt and OpenSSL libraries)
 ###########################################
+set(SRC ${SRC} main.cpp)
 add_executable(sjabber ${SRC})
 add_dependencies(sjabber shared-third-party qxmpp-static qt5keychain)
-if(MSVC)
-    add_dependencies(sjabber shared-qt)
-endif()
 qt5_use_modules(sjabber Network Widgets)
 target_link_libraries(sjabber qxmpp-static qt5keychain)
 target_compile_definitions(sjabber PRIVATE QXMPP_STATIC)
