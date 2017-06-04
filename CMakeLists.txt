@@ -3,7 +3,7 @@ cmake_policy(SET CMP0020 NEW)
 cmake_policy(SET CMP0048 NEW)
 cmake_policy(SET CMP0043 NEW)
 
-project(SimpleJabber VERSION 1.0.0 LANGUAGES CXX)
+project(SimpleJabber VERSION 1.0.0 LANGUAGES C CXX)
 
 # Setting up output subdirectories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/out/bin)
