@@ -18,6 +18,6 @@ private:
     Ui::HeaderWidget ui_;
 
     core::Client& client_;
-};  // UserListWidget
+};  // HeaderWidget
 
 }  // namespace ui

@@ -2,28 +2,28 @@
 
 set(SOURCE_FILES
     ${SOURCE_FILES}
-    ${CMAKE_CURRENT_SOURCE_DIR}/chat_list_widget.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/chat_list_widget.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/chat_list_widget.ui
-    ${CMAKE_CURRENT_SOURCE_DIR}/chat_widget.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/chat_widget.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/chat_widget.ui
     ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.ui
-    ${CMAKE_CURRENT_SOURCE_DIR}/header_widget.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/header_widget.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/header_widget.ui
-    ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/login_widget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog_page_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog_page_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog_page_widget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog/dialog_list_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog/dialog_list_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog/dialog_list_widget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog/dialog_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog/dialog_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog/dialog_widget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog/header_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog/header_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/dialog/header_widget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/login_page_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/login_page_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/login_page_widget.ui
     ${CMAKE_CURRENT_SOURCE_DIR}/main_window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/main_window.h
     ${CMAKE_CURRENT_SOURCE_DIR}/main_window.ui
-    ${CMAKE_CURRENT_SOURCE_DIR}/settings_widget.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/settings_widget.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/settings_widget.ui
-    ${CMAKE_CURRENT_SOURCE_DIR}/user_list_widget.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/user_list_widget.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/user_list_widget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/settings_page_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/settings_page_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/settings_page_widget.ui
     PARENT_SCOPE)

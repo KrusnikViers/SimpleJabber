@@ -5,10 +5,10 @@
 #include <QMainWindow>
 
 #include "core/client.h"
-#include "ui/chat_widget.h"
+#include "ui/dialog_page_widget.h"
 #include "ui/connection_state_widget.h"
-#include "ui/login_widget.h"
-#include "ui/settings_widget.h"
+#include "ui/login_page_widget.h"
+#include "ui/settings_page_widget.h"
 #include "ui_main_window.h"
 
 
@@ -30,10 +30,10 @@ private:
 
     Ui::MainWindow ui_;
 
-    std::unique_ptr<ui::ChatWidget>            chat_widget_;
-    std::unique_ptr<ui::LoginWidget>           login_widget_;
     std::unique_ptr<ui::ConnectionStateWidget> connection_state_widget_;
-    std::unique_ptr<ui::SettingsWidget>        settings_widget_;
+    std::unique_ptr<ui::DialogPageWidget>      dialog_page_widget_;
+    std::unique_ptr<ui::LoginPageWidget>       login_page_widget_;
+    std::unique_ptr<ui::SettingsPageWidget>    settings_page_widget_;
 
     std::unique_ptr<QEventLoopLocker> lock_;
 };  // class MainWindow

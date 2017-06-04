@@ -9,7 +9,7 @@ MainWindow::MainWindow() : QMainWindow(nullptr)
 {
     ui_.setupUi(this);
     setUpUIComponents();
-    ui_.stacked_widget->setCurrentWidget(login_widget_.get());
+    ui_.stacked_widget->setCurrentWidget(login_page_widget_.get());
 
     setWindowTitle(base::kProjectFullName);
 
@@ -24,18 +24,17 @@ void MainWindow::setUpUIComponents()
     ui_.main_widget->layout()->addWidget(connection_state_widget_.get());
     connection_state_widget_->reset();
 
-    login_widget_.reset(new ui::LoginWidget(this, client_));
-    stacked_widget->addWidget(login_widget_.get());
-    login_widget_->resetLoginPage();
-    login_widget_->resetOptionsPage();
+    login_page_widget_.reset(new ui::LoginPageWidget(this, client_));
+    stacked_widget->addWidget(login_page_widget_.get());
+    login_page_widget_->reset();
 
-    chat_widget_.reset(new ui::ChatWidget(this, client_));
-    stacked_widget->addWidget(chat_widget_.get());
-    chat_widget_->reset();
+    dialog_page_widget_.reset(new ui::DialogPageWidget(this, client_));
+    stacked_widget->addWidget(dialog_page_widget_.get());
+    dialog_page_widget_->reset();
 
-    settings_widget_.reset(new ui::SettingsWidget(this, client_));
-    stacked_widget->addWidget(settings_widget_.get());
-    settings_widget_->reset();
+    settings_page_widget_.reset(new ui::SettingsPageWidget(this, client_));
+    stacked_widget->addWidget(settings_page_widget_.get());
+    settings_page_widget_->reset();
 }
 
 }  // namespace ui
