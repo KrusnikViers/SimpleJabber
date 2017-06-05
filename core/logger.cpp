@@ -1,6 +1,13 @@
 #include "core/logger.h"
 
 
+namespace {
+
+const QString kLogFileName = "sj_log.txt";
+
+}  // namespace
+
+
 namespace core {
 
 Logger::Logger(Settings& settings, QXmppClient& qxmpp_client) :
@@ -8,7 +15,7 @@ Logger::Logger(Settings& settings, QXmppClient& qxmpp_client) :
     qxmpp_client_(qxmpp_client),
     logger_(new QXmppLogger(this))
 {
-    logger_->setLogFilePath(settings_.logFilePath());
+    logger_->setLogFilePath(Settings::localDataDir().absoluteFilePath(kLogFileName));
     qxmpp_client.setLogger(logger_.get());
 
     updateLogging();

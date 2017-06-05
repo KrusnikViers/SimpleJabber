@@ -25,7 +25,7 @@ struct Credentials {
 
 struct Connection {
     enum class OnLaunchMode {
-        ClearLogin,
+        None,
         StoreLogin,
         AutoLogin
     };

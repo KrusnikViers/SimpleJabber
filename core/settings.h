@@ -14,9 +14,10 @@ class Settings : public QObject
 public:
     Settings();
 
+    static QDir localDataDir();
+
     settings::Logging logging() const { return cached_logging_; }
     void setLogging(settings::Logging value);
-    QString logFilePath() const;
 
     settings::Connection connection() const { return cached_connection_; }
     void setConnection(settings::Connection value);
@@ -30,12 +31,12 @@ signals:
     void proxyUpdated();
 
 private slots:
-    void logConfigurationForDevelopment() const;
-
     void connectionPasswordRead(QKeychain::Job* job);
     void proxyPasswordRead(QKeychain::Job* job);
 
 private:
+    void parseSettingsFile();
+
     settings::Logging    cached_logging_;
     settings::Connection cached_connection_;
     settings::Proxy      cached_proxy_;
