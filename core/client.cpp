@@ -21,9 +21,27 @@ Client::Client() :
                      SLOT(onQXmppError(QXmppClient::Error)));
 }
 
-void Client::login(const QString &jid, const QString &password)
+void Client::connectToServer()
 {
-    qxmpp_client_.connectToServer(jid, password);
+    QXmppConfiguration configuration;
+    QXmppPresence initial_presence;
+
+    configuration.setAutoAcceptSubscriptions(true);
+    configuration.setAutoReconnectionEnabled(false);
+    configuration.setJid(settings_.connection().user.login);
+    configuration.setPassword(settings_.connection().user.password);
+    configuration.setResource(settings_.connection().resource);
+    if (!settings_.connection().server.isEmpty()) {
+        configuration.setHost(settings_.connection().server.host());
+        configuration.setPort(settings_.connection().server.port());
+    }
+
+    qxmpp_client_.connectToServer(configuration, initial_presence);
+}
+
+void Client::disconnectFromServer()
+{
+    qxmpp_client_.disconnect();
 }
 
 void Client::onQXmppStateUpdate(QXmppClient::State state)

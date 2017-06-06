@@ -19,7 +19,8 @@ class Client : public QObject
 public:
     Client();
 
-    void login(const QString& jid, const QString& password);
+    void connectToServer();
+    void disconnectFromServer();
 
     base::ConnectionState connectionState() const { return state_; }
     base::UserStatus userStatus() const { return status_; }

@@ -38,6 +38,13 @@ void LoginPageWidget::reset()
 
 void LoginPageWidget::onConnectClicked()
 {
+    auto connection_settings = client_.settings().connection();
+    connection_settings.user.login = ui_.login_edit->text();
+    connection_settings.user.password = ui_.password_edit->text();
+    connection_settings.on_launch_mode =
+            static_cast<core::settings::Connection::OnLaunchMode>(ui_.on_launch_mode_cbox->currentIndex());
+    client_.settings().setConnection(connection_settings);
+    client_.connectToServer();
 }
 
 void LoginPageWidget::onOptionsClicked()
