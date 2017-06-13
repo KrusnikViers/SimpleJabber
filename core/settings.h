@@ -22,24 +22,18 @@ public:
     settings::Connection connection() const { return cached_connection_; }
     void setConnection(settings::Connection value);
 
-    settings::Proxy proxy() const { return cached_proxy_; }
-    void setProxy(settings::Proxy value);
-
 signals:
     void loggingUpdated();
     void connectionUpdated();
-    void proxyUpdated();
 
 private slots:
     void connectionPasswordRead(QKeychain::Job* job);
-    void proxyPasswordRead(QKeychain::Job* job);
 
 private:
     void parseSettingsFile();
 
     settings::Logging    cached_logging_;
     settings::Connection cached_connection_;
-    settings::Proxy      cached_proxy_;
 
     QSettings settings_;
 };

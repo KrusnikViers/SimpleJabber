@@ -26,7 +26,6 @@ const QString kSettingsFileName = "settings.ini";
 
 const QString kLoggingSectionPrefix = "logging";
 const QString kConnectionSectionPrefix = "connection";
-const QString kProxySectionPrefix = "proxy";
 
 const QString kLoginName = "login";
 const QString kPasswordName = "password";
@@ -82,20 +81,6 @@ void Settings::parseSettingsFile()
     cached_connection_.server = settings_.value(kUrlName).toUrl();
     cached_connection_.resource = settings_.value(kResourceName).toString();
     settings_.endGroup();
-
-    settings_.beginGroup(kProxySectionPrefix);
-    cached_proxy_.type = readCustomEnum(settings_, kTypeName, QNetworkProxy::NoProxy);
-    if (cached_proxy_.type != QNetworkProxy::NoProxy) {
-        cached_proxy_.server = settings_.value(kUrlName).toUrl();
-        cached_proxy_.user.login = settings_.value(kLoginName).toString();
-        // Delete itself after finished.
-        secure::ReadJob* job = new secure::ReadJob(this);
-        job->setKey(kProxySectionPrefix + kPasswordName);
-        job->setSettings(&settings_);
-        QObject::connect(job, SIGNAL(finished(QKeychain::Job*)), SLOT(proxyPasswordRead(QKeychain::Job*)));
-        job->start();
-    }
-    settings_.endGroup();
 }
 
 QDir Settings::localDataDir()
@@ -141,43 +126,12 @@ void Settings::setConnection(Connection value)
     emit connectionUpdated();
 }
 
-void Settings::setProxy(Proxy value)
-{
-    if (cached_proxy_ == value)
-        return;
-    cached_proxy_ = value;
-    settings_.beginGroup(kProxySectionPrefix);
-    settings_.remove("");
-    settings_.setValue(kTypeName, static_cast<int>(value.type));
-    if (value.type != QNetworkProxy::NoProxy) {
-        settings_.setValue(kUrlName, value.server);
-        settings_.setValue(kLoginName, value.user.login);
-    }
-    // Delete itself after finished.
-    secure::WriteJob* job = new secure::WriteJob(this);
-    job->setKey(kProxySectionPrefix + kPasswordName);
-    job->setTextData(value.type != QNetworkProxy::NoProxy ? value.user.password : "");
-    job->setSettings(&settings_);
-    job->start();
-    settings_.endGroup();
-    emit proxyUpdated();
-}
-
 void Settings::connectionPasswordRead(QKeychain::Job* job)
 {
     secure::ReadJob* secure_job = dynamic_cast<secure::ReadJob*>(job);
     if (secure_job->textData() != cached_connection_.user.password) {
         cached_connection_.user.password = secure_job->textData();
         emit connectionUpdated();
-    }
-}
-
-void Settings::proxyPasswordRead(QKeychain::Job* job)
-{
-    secure::ReadJob* secure_job = dynamic_cast<secure::ReadJob*>(job);
-    if (secure_job->textData() != cached_proxy_.user.password) {
-        cached_proxy_.user.password = secure_job->textData();
-        emit proxyUpdated();
     }
 }
 

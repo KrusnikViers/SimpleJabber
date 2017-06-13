@@ -44,16 +44,5 @@ struct Connection {
     }
 };
 
-struct Proxy {
-    QNetworkProxy::ProxyType type;
-    Credentials              user;
-    QUrl                     server;
-
-    bool operator==(const Proxy& other)
-    {
-        return type == other.type && user == other.user && server == other.server;
-    }
-};
-
 }  // namespace settings
 }  // namespace core
