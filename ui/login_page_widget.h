@@ -20,9 +20,6 @@ private slots:
     void onConnectClicked();
     void onOptionsClicked();
 
-    void onConnectionStateChanged();
-    void onConnectionSettingsUpdated();
-
 private:
     Ui::LoginPageWidget ui_;
 

@@ -25,6 +25,7 @@ public:
 signals:
     void loggingUpdated();
     void connectionUpdated();
+    void userPasswordReceived();
 
 private slots:
     void connectionPasswordRead(QKeychain::Job* job);

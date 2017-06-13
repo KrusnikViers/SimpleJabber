@@ -131,6 +131,7 @@ void Settings::connectionPasswordRead(QKeychain::Job* job)
     secure::ReadJob* secure_job = dynamic_cast<secure::ReadJob*>(job);
     if (secure_job->textData() != cached_connection_.user.password) {
         cached_connection_.user.password = secure_job->textData();
+        emit userPasswordReceived();
         emit connectionUpdated();
     }
 }

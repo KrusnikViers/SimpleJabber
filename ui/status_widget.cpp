@@ -19,15 +19,13 @@ void StatusWidget::reset()
 
 void StatusWidget::setState(State state, const QString& status)
 {
-    static const int kVisibleWidgetHeight = 35;
-    if (state > state_) {
+    if (state > state_ || state == None) {
         state_ = state;
         setEnabled(true);
         ui_.status_label->setText(status);
         ui_.hide_button->setVisible(state == Notification);
         ui_.abort_button->setVisible(state == Process);
-        auto current_geometry = geometry();
-        current_geometry.setHeight(state == None ? 0 : kVisibleWidgetHeight);
+        setVisible(state != None);
     }
 }
 
