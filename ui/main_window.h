@@ -6,7 +6,7 @@
 
 #include "core/client.h"
 #include "ui/dialog_page_widget.h"
-#include "ui/connection_state_widget.h"
+#include "ui/status_widget.h"
 #include "ui/login_page_widget.h"
 #include "ui/settings_page_widget.h"
 #include "ui_main_window.h"
@@ -23,6 +23,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow();
 
+public slots:
+    void setUIEnabled(bool value);
+
 private:
     void setUpUIComponents();
 
@@ -30,10 +33,10 @@ private:
 
     Ui::MainWindow ui_;
 
-    std::unique_ptr<ui::ConnectionStateWidget> connection_state_widget_;
-    std::unique_ptr<ui::DialogPageWidget>      dialog_page_widget_;
-    std::unique_ptr<ui::LoginPageWidget>       login_page_widget_;
-    std::unique_ptr<ui::SettingsPageWidget>    settings_page_widget_;
+    std::unique_ptr<ui::DialogPageWidget> dialog_page_widget_;
+    std::unique_ptr<ui::LoginPageWidget> login_page_widget_;
+    std::unique_ptr<ui::SettingsPageWidget> settings_page_widget_;
+    std::unique_ptr<ui::StatusWidget> status_widget_;
 
     std::unique_ptr<QEventLoopLocker> lock_;
 };  // class MainWindow

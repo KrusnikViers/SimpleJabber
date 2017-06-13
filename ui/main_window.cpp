@@ -16,13 +16,18 @@ MainWindow::MainWindow() : QMainWindow(nullptr)
     lock_.reset(new QEventLoopLocker());
 }
 
+void MainWindow::setUIEnabled(bool value)
+{
+    ui_.stacked_widget->setEnabled(value);
+}
+
 void MainWindow::setUpUIComponents()
 {
     QStackedWidget* stacked_widget = ui_.main_widget->findChild<QStackedWidget*>("stacked_widget");
 
-    connection_state_widget_.reset(new ui::ConnectionStateWidget(this, client_));
-    ui_.main_widget->layout()->addWidget(connection_state_widget_.get());
-    connection_state_widget_->reset();
+    status_widget_.reset(new ui::StatusWidget(this, client_));
+    ui_.main_widget->layout()->addWidget(status_widget_.get());
+    status_widget_->reset();
 
     login_page_widget_.reset(new ui::LoginPageWidget(this, client_));
     stacked_widget->addWidget(login_page_widget_.get());

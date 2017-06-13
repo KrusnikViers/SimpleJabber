@@ -2,9 +2,6 @@
 
 set(SOURCE_FILES
     ${SOURCE_FILES}
-    ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/connection_state_widget.ui
     ${CMAKE_CURRENT_SOURCE_DIR}/dialog_page_widget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/dialog_page_widget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/dialog_page_widget.ui
@@ -26,4 +23,7 @@ set(SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/settings_page_widget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/settings_page_widget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/settings_page_widget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/status_widget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/status_widget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/status_widget.ui
     PARENT_SCOPE)
