@@ -6,11 +6,13 @@
 
 namespace ui {
 
+class MainWindow;
+
 class SettingsPageWidget : public QWidget
 {
     Q_OBJECT
 public:
-    SettingsPageWidget(QWidget *parent, core::Client& client);
+    SettingsPageWidget(MainWindow *parent, core::Client& client);
 
     void reset();
 

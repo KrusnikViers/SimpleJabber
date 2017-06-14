@@ -161,13 +161,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="options_button">
-       <property name="text">
-        <string>Options</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <spacer name="_spacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -220,7 +213,7 @@
       </size>
      </property>
      <property name="title">
-      <string>Connection options</string>
+      <string>Optional parameters</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="leftMargin">

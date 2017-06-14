@@ -6,11 +6,13 @@
 
 namespace ui {
 
+class MainWindow;
+
 class DialogPageWidget : public QWidget
 {
     Q_OBJECT
 public:
-    DialogPageWidget(QWidget *parent, core::Client& client);
+    DialogPageWidget(MainWindow *parent, core::Client& client);
 
     void reset();
 

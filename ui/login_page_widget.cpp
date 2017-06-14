@@ -1,18 +1,19 @@
 #include "ui/login_page_widget.h"
 
 #include "core/settings.h"
+#include "ui/main_window.h"
 
 
 namespace ui {
 
-LoginPageWidget::LoginPageWidget(QWidget *parent, core::Client& client) :
+LoginPageWidget::LoginPageWidget(MainWindow *parent, core::Client& client) :
     QWidget(parent),
+    main_window_(parent),
     client_(client)
 {
     ui_.setupUi(this);
 
     QObject::connect(ui_.connect_button, SIGNAL(clicked(bool)), SLOT(onConnectClicked()));
-    QObject::connect(ui_.options_button, SIGNAL(clicked(bool)), SLOT(onOptionsClicked()));
 }
 
 LoginPageWidget::~LoginPageWidget()
@@ -35,10 +36,6 @@ void LoginPageWidget::reset()
     if (!connection_settings.server.isEmpty())
         ui_.server_edit->setText(connection_settings.server.toString());
     ui_.resource_edit->setText(connection_settings.resource);
-
-    bool has_optional_settings = !connection_settings.server.isEmpty() || !connection_settings.resource.isEmpty() ||
-                                 connection_settings.on_launch_mode != core::settings::Connection::OnLaunchMode::None;
-    ui_.options_box->setVisible(has_optional_settings);
 }
 
 void LoginPageWidget::onConnectClicked()
@@ -54,16 +51,11 @@ void LoginPageWidget::onConnectClicked()
             connection_settings.server = server_url;
     }
     connection_settings.resource = ui_.resource_edit->text();
-    reset();
-
     client_.settings().setConnection(connection_settings);
-    client_.connectToServer();
-}
 
-void LoginPageWidget::onOptionsClicked()
-{
-    // Switch options group box visibility
-    ui_.options_box->setVisible(!ui_.options_box->isVisible());
+    reset();
+    main_window_->setStatus(StatusWidget::Process, QStringLiteral("Connecting..."));
+    client_.connectToServer();
 }
 
 }  // namespace ui

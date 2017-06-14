@@ -1,9 +1,11 @@
 #include "ui/dialog_page_widget.h"
 
+#include "ui/main_window.h"
+
 
 namespace ui {
 
-DialogPageWidget::DialogPageWidget(QWidget *parent, core::Client& client) :
+DialogPageWidget::DialogPageWidget(MainWindow *parent, core::Client& client) :
     QWidget(parent),
     client_(client)
 {

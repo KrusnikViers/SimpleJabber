@@ -1,10 +1,13 @@
 #include "ui/status_widget.h"
 
+#include "ui/main_window.h"
+
 
 namespace ui {
 
-StatusWidget::StatusWidget(QWidget *parent, core::Client& client) :
+StatusWidget::StatusWidget(MainWindow *parent, core::Client& client) :
     QWidget(parent),
+    main_window_(parent),
     client_(client)
 {
     ui_.setupUi(this);
@@ -22,10 +25,11 @@ void StatusWidget::setState(State state, const QString& status)
     if (state > state_ || state == None) {
         state_ = state;
         setEnabled(true);
+        setVisible(state != None);
         ui_.status_label->setText(status);
         ui_.hide_button->setVisible(state == Notification);
         ui_.abort_button->setVisible(state == Process);
-        setVisible(state != None);
+        main_window_->setUIEnabled(state != Process && state != Blocker);
     }
 }
 

@@ -6,6 +6,8 @@
 
 namespace ui {
 
+class MainWindow;
+
 class StatusWidget : public QWidget
 {
     Q_OBJECT
@@ -17,16 +19,17 @@ public:
         None
     };
 
-    StatusWidget(QWidget *parent, core::Client& client);
+    StatusWidget(MainWindow *parent, core::Client& client);
 
     void reset();
 
 public slots:
-    void setState(State state, const QString& status);
+    void setState(State state, const QString& text);
     void clearState();
 
 signals:
     void abortRequiested();
+    void setUIEnabled(bool enabled);
 
 private slots:
     void onAbortClicked();
@@ -37,6 +40,7 @@ private:
 
     State state_;
 
+    MainWindow* main_window_;
     core::Client& client_;
 };  // StatusWidget
 

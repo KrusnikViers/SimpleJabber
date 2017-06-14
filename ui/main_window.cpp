@@ -8,10 +8,10 @@ namespace ui {
 MainWindow::MainWindow() : QMainWindow(nullptr)
 {
     ui_.setupUi(this);
-    setUpUIComponents();
-    ui_.stacked_widget->setCurrentWidget(login_page_widget_.get());
-
     setWindowTitle(base::kProjectFullName);
+    setUpUIComponents();
+
+    ui_.stacked_widget->setCurrentWidget(login_page_widget_.get());
 
     lock_.reset(new QEventLoopLocker());
 }
@@ -19,6 +19,11 @@ MainWindow::MainWindow() : QMainWindow(nullptr)
 void MainWindow::setUIEnabled(bool value)
 {
     ui_.stacked_widget->setEnabled(value);
+}
+
+void MainWindow::setStatus(StatusWidget::State state, const QString &text)
+{
+    status_widget_->setState(state, text);
 }
 
 void MainWindow::setUpUIComponents()

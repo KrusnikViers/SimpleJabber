@@ -14,17 +14,14 @@
 
 namespace ui {
 
-class LoginWidget;
-class ConnectionStateWidget;
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
     MainWindow();
 
-public slots:
     void setUIEnabled(bool value);
+    void setStatus(StatusWidget::State state, const QString& text);
 
 private:
     void setUpUIComponents();
