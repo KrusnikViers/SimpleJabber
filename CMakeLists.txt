@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2.2)
 include(CMakeDefinitions.cmake)
-
+initial_cmake_setup()
 
 # Main project.
 project(SimpleJabber VERSION 1.0.0 LANGUAGES C CXX)
