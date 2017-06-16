@@ -1,7 +1,6 @@
 # Base sources allowed to include only third-party source files.
 
-set(SOURCE_FILES
-    ${SOURCE_FILES}
+set(base-src
     ${CMAKE_CURRENT_SOURCE_DIR}/connection_types.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/connection_types.h
     ${CMAKE_CURRENT_SOURCE_DIR}/project_info.cpp

@@ -1,17 +1,4 @@
-cmake_minimum_required(VERSION 3.2.2)
-cmake_policy(SET CMP0020 NEW)
-cmake_policy(SET CMP0048 NEW)
-cmake_policy(SET CMP0043 NEW)
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_REQUIRED TRUE)
-find_package(Qt5Network REQUIRED)
-find_package(Qt5Xml REQUIRED)
-
-
-####################
 # shared-third-party
-####################
 add_custom_target(shared-third-party)
 add_custom_command(
     TARGET shared-third-party POST_BUILD
@@ -19,56 +6,17 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/shared ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
 
-###########
-# shared-qt
-###########
-add_custom_target(shared-qt)
-
-set(QT_MODULES_LIST Core Widgets Gui Network Xml)
-if(WIN32)
-    set(QT_PLUGINS QWindowsIntegrationPlugin)
-endif()
-
-set(_QTM_DIR ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
-set(_QTP_DIR ${_QTM_DIR}/platforms/)
-file(MAKE_DIRECTORY ${_QTP_DIR})
-foreach(_QTM ${QT_MODULES_LIST})
-    add_custom_command(
-        TARGET shared-qt POST_BUILD
-        COMMENT "Shared ${_QTM} added to ${_QTM_DIR}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::${_QTM}> ${_QTM_DIR})
-endforeach()
-foreach(_QTP ${QT_PLUGINS})
-    add_custom_command(
-        TARGET shared-qt POST_BUILD
-        COMMENT "Platform plugin ${_QTP} added to ${_QTP_DIR}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::${_QTP}> ${_QTP_DIR})
-endforeach()
+# qt5keychain
+set_option(BUILD_WITH_QT4 OFF)
+set_option(BUILD_TRANSLATIONS OFF)
+set_option(QTKEYCHAIN_STATIC ON)
+add_subdirectory(qtkeychain EXCLUDE_FROM_ALL)
 
 
-###################
-# qtkeychain-static
-###################
-option(BUILD_WITH_QT4 "Build qtkeychain with Qt4 no matter if Qt5 was found" OFF)
-option(BUILD_TRANSLATIONS "Build translations" OFF)
-option(QTKEYCHAIN_STATIC "Build static library" ON)
-set(CMAKE_AUTOMOC OFF)
-set(CMAKE_AUTOUIC OFF)
-set(CMAKE_AUTORCC OFF)
-add_subdirectory(qtkeychain)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
-
-
-##############
 # qxmpp-static
-##############
-project(qxmpp-static CXX)
+project(qxmpp CXX)
 set(QXMPP_VERSION 0.9.3)
-include_directories(qxmpp/src/base)
-include_directories(qxmpp/src/client)
-set(QXMPP_SRC
+set(qxmpp-src
     qxmpp/src/base/QXmppArchiveIq.cpp
     qxmpp/src/base/QXmppArchiveIq.h
     qxmpp/src/base/QXmppBindIq.cpp
@@ -189,6 +137,10 @@ set(QXMPP_SRC
     qxmpp/src/client/QXmppVCardManager.h
     qxmpp/src/client/QXmppVersionManager.cpp
     qxmpp/src/client/QXmppVersionManager.h)
-add_library(qxmpp-static STATIC ${QXMPP_SRC})
-add_definitions(-DQXMPP_STATIC)
-qt5_use_modules(qxmpp-static Network Xml)
+add_library(qxmpp STATIC ${qxmpp-src})
+set_target_properties(qxmpp PROPERTIES AUTOMOC ON)
+target_include_directories(qxmpp PUBLIC qxmpp/src/base)
+target_include_directories(qxmpp PUBLIC qxmpp/src/client)
+target_compile_definitions(qxmpp PUBLIC -DQXMPP_STATIC)
+target_qt5_package(qxmpp Network)
+target_qt5_package(qxmpp Xml)
