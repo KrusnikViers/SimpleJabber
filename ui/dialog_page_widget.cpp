@@ -5,11 +5,11 @@
 
 namespace ui {
 
-DialogPageWidget::DialogPageWidget(MainWindow *parent, core::Client& client) :
-    QWidget(parent),
-    client_(client)
+DialogPageWidget::DialogPageWidget(MainWindow *parent) :
+    QWidget(parent)
 {
     ui_.setupUi(this);
+    reset();
 }
 
 void DialogPageWidget::reset()

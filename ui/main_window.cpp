@@ -1,6 +1,11 @@
 #include "ui/main_window.h"
 
+#include <cassert>
+
 #include "base/project_info.h"
+#include "ui/dialog_page_widget.h"
+#include "ui/login_page_widget.h"
+#include "ui/settings_page_widget.h"
 
 
 namespace ui {
@@ -8,12 +13,10 @@ namespace ui {
 MainWindow::MainWindow() : QMainWindow(nullptr)
 {
     ui_.setupUi(this);
+
     setWindowTitle(base::kProjectFullName);
     setUpUIComponents();
-
-    ui_.stacked_widget->setCurrentWidget(login_page_widget_.get());
-
-    lock_.reset(new QEventLoopLocker());
+    ui_.stacked_widget->setCurrentWidget(login_page_widget_);
 }
 
 void MainWindow::setUIEnabled(bool value)
@@ -28,23 +31,32 @@ void MainWindow::setStatus(StatusWidget::State state, const QString &text)
 
 void MainWindow::setUpUIComponents()
 {
-    QStackedWidget* stacked_widget = ui_.main_widget->findChild<QStackedWidget*>("stacked_widget");
+    QVBoxLayout* layout = dynamic_cast<QVBoxLayout*>(ui_.main_widget->layout());
+    assert(layout);
 
-    status_widget_.reset(new ui::StatusWidget(this, client_));
-    ui_.main_widget->layout()->addWidget(status_widget_.get());
-    status_widget_->reset();
+    // Status widget.
+    assert(!status_widget_);
+    status_widget_ = new ui::StatusWidget(this);
+    layout->addWidget(status_widget_);
 
-    login_page_widget_.reset(new ui::LoginPageWidget(this, client_));
-    stacked_widget->addWidget(login_page_widget_.get());
-    login_page_widget_->reset();
+    const QString stacked_widget_name = "stacked_widget";
+    QStackedWidget* stacked_widget = ui_.main_widget->findChild<QStackedWidget*>(stacked_widget_name);
+    assert(stacked_widget);
 
-    dialog_page_widget_.reset(new ui::DialogPageWidget(this, client_));
-    stacked_widget->addWidget(dialog_page_widget_.get());
-    dialog_page_widget_->reset();
+    // Login page widget.
+    assert(!login_page_widget_);
+    login_page_widget_ = new ui::LoginPageWidget(this);
+    stacked_widget->addWidget(login_page_widget_);
 
-    settings_page_widget_.reset(new ui::SettingsPageWidget(this, client_));
-    stacked_widget->addWidget(settings_page_widget_.get());
-    settings_page_widget_->reset();
+    // Dialog page widget.
+    assert(!dialog_page_widget_);
+    dialog_page_widget_ = new ui::DialogPageWidget(this);
+    stacked_widget->addWidget(dialog_page_widget_);
+
+    // Settings page widget.
+    assert(!settings_page_widget_);
+    settings_page_widget_ = new ui::SettingsPageWidget(this);
+    stacked_widget->addWidget(settings_page_widget_);
 }
 
 }  // namespace ui

@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>300</height>
+    <height>250</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>300</width>
-    <height>300</height>
+    <height>250</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -131,15 +131,12 @@
    </item>
    <item row="3" column="1">
     <spacer name="_spacer_5">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
      <property name="sizeType">
       <enum>QSizePolicy::Fixed</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>20</width>
+       <width>0</width>
        <height>10</height>
       </size>
      </property>
@@ -177,39 +174,42 @@
    </item>
    <item row="6" column="1">
     <spacer name="_spacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>20</width>
-       <height>40</height>
+       <width>0</width>
+       <height>0</height>
       </size>
      </property>
     </spacer>
    </item>
    <item row="0" column="1">
     <spacer name="_spacer_1">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>20</width>
-       <height>80</height>
+       <width>0</width>
+       <height>35</height>
       </size>
      </property>
     </spacer>
    </item>
    <item row="5" column="1">
     <widget class="QGroupBox" name="options_box">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>250</width>
+       <height>100</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
        <width>250</width>
-       <height>16777215</height>
+       <height>100</height>
       </size>
      </property>
      <property name="title">
@@ -284,6 +284,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>login_edit</tabstop>
+  <tabstop>password_edit</tabstop>
+  <tabstop>connect_button</tabstop>
+  <tabstop>on_launch_mode_cbox</tabstop>
+  <tabstop>server_edit</tabstop>
+  <tabstop>resource_edit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

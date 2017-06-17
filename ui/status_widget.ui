@@ -44,7 +44,7 @@
    <item>
     <widget class="QLabel" name="status_label">
      <property name="text">
-      <string>TextLabel</string>
+      <string>Status message</string>
      </property>
     </widget>
    </item>

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "core/client.h"
 #include "ui_status_widget.h"
 
 
@@ -12,14 +11,16 @@ class StatusWidget : public QWidget
 {
     Q_OBJECT
 public:
+    // Ordered in priority order: new state can replace current one, if new state is ordered higher.
+    // Only exception is None (empty) state - it can replace any other.
     enum State {
         Blocker,
         Process,
         Notification,
-        None
+        None,
     };
 
-    StatusWidget(MainWindow *parent, core::Client& client);
+    StatusWidget(MainWindow *parent);
 
     void reset();
 
@@ -29,7 +30,6 @@ public slots:
 
 signals:
     void abortRequiested();
-    void setUIEnabled(bool enabled);
 
 private slots:
     void onAbortClicked();
@@ -40,8 +40,7 @@ private:
 
     State state_;
 
-    MainWindow* main_window_;
-    core::Client& client_;
+    MainWindow* main_window_;  // Weak.
 };  // StatusWidget
 
 }  // namespace ui

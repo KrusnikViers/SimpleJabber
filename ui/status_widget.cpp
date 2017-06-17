@@ -5,12 +5,13 @@
 
 namespace ui {
 
-StatusWidget::StatusWidget(MainWindow *parent, core::Client& client) :
+StatusWidget::StatusWidget(MainWindow *parent) :
     QWidget(parent),
-    main_window_(parent),
-    client_(client)
+    main_window_(parent)
 {
     ui_.setupUi(this);
+    reset();
+
     QObject::connect(ui_.hide_button, SIGNAL(clicked(bool)), SLOT(onHideClicked()));
     QObject::connect(ui_.abort_button, SIGNAL(clicked(bool)), SLOT(onAbortClicked()));
 }
@@ -22,7 +23,7 @@ void StatusWidget::reset()
 
 void StatusWidget::setState(State state, const QString& status)
 {
-    if (state > state_ || state == None) {
+    if (state < state_ || state == None) {
         state_ = state;
         setEnabled(true);
         setVisible(state != None);

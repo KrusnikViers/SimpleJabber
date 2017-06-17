@@ -5,11 +5,11 @@
 
 namespace ui {
 
-SettingsPageWidget::SettingsPageWidget(MainWindow *parent, core::Client& client) :
-    QWidget(parent),
-    client_(client)
+SettingsPageWidget::SettingsPageWidget(MainWindow *parent) :
+    QWidget(parent)
 {
     ui_.setupUi(this);
+    reset();
 }
 
 void SettingsPageWidget::reset()

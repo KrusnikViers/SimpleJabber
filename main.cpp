@@ -5,7 +5,7 @@
 int main(int argc, char* argv[])
 {
     QApplication main_app(argc, argv);
-    main_app.setQuitOnLastWindowClosed(false);
+    main_app.setQuitOnLastWindowClosed(true);
     main_app.setQuitLockEnabled(true);
 
     ui::MainWindow main_window;
