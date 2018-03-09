@@ -1,8 +1,8 @@
-# SimpleJabber
+# Project is frozen and not supported.
+---
+## SimpleJabber
 
 [![Build Status](https://travis-ci.org/KrusnikViers/SimpleJabber.svg?branch=master)](https://travis-ci.org/KrusnikViers/SimpleJabber)
-
-(Project is in active development and not suitable for using)
 
 ---
 
